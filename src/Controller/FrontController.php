@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Hotel;
+use App\Entity\Room;
 use App\Repository\HotelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +28,15 @@ class FrontController extends AbstractController
     { dump("test");
         return $this->render('front/hotels.html.twig', [
             'hotels' => $hotelRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/hotels/{id}", name="hotel_shows", methods={"GET"},requirements={"id"="\d+"})
+     */
+    public function show(Hotel $hotel): Response
+    {
+        return $this->render('front/details.html.twig', [
+            'hotel' => $hotel,
         ]);
     }
 }

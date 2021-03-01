@@ -23,9 +23,9 @@ class Room
     private $nb_personnes;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $nb_lits;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,14 +59,14 @@ class Room
         return $this;
     }
 
-    public function getNbLits(): ?int
+    public function getDescription(): ?string
     {
-        return $this->nb_lits;
+        return $this->description;
     }
 
-    public function setNbLits(int $nb_lits): self
+    public function setDescription(string $description): self
     {
-        $this->nb_lits = $nb_lits;
+        $this->description = $description;
 
         return $this;
     }
