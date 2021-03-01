@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,20 @@ class Hotel
      * @ORM\Column(type="string", length=255)
      */
     private $adress;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Room::class, mappedBy="idHotel", orphanRemoval=true)
+     */
+    private $rooms;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+    public function __construct()
+    {
+        $this->rooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +119,36 @@ class Hotel
     public function setAdress(string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms(): Collection
+    {
+        return $this->rooms;
+    }
+
+    public function addRoom(Room $room): self
+    {
+        if (!$this->rooms->contains($room)) {
+            $this->rooms[] = $room;
+            $room->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoom(Room $room): self
+    {
+        if ($this->rooms->removeElement($room)) {
+            // set the owning side to null (unless already changed)
+            if ($room->getIdHotel() === $this) {
+                $room->setIdHotel(null);
+            }
+        }
 
         return $this;
     }

@@ -42,6 +42,12 @@ class Room
      */
     private $prix;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="rooms")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idHotel;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Room
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getIdHotel(): ?Hotel
+    {
+        return $this->idHotel;
+    }
+
+    public function setIdHotel(?Hotel $idHotel): self
+    {
+        $this->idHotel = $idHotel;
 
         return $this;
     }

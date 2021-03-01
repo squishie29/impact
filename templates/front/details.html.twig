@@ -55,8 +55,10 @@
                     <div class="col-md-4">
                         <div class="bg-gray-3 p-30-40">
                             <ul class="style-1 mb-0">
-                                {% for room in rooms %}
+                                 {% for room in rooms %}
+                                     {% if hotel.name==room.idHotel %}
                                 <li>{{ room.options }}</li>
+                                     {% endif %}
                                 {% endfor %}
                         </div>
                     </div>
@@ -126,45 +128,29 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for room in rooms %}
+                        {% if hotel.name==room.idHotel %}
                         <tr>
+
                             <td> <img src="pic/190x130.jpg" data-at2x="pic/190x130@2x.jpg" alt>
-                                <h6>Grand Hotel Wien</h6>
-                                <p class="mb-0">(Extra beds available: Crib, <br> Rollaway bed) Room sleeps <br> 4 guests (up to 3 children)</p>
+                                <h6>{{ room.type }}</h6>
+
                             </td>
                             <td>
                                 <div class="table-icon"><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people alt"></i></div>
-                                <p>4 guest</p>
+                                <p>{{ room.nbPersonnes }} guest</p>
                             </td>
                             <td>
                                 <ul class="style-1">
-                                    <li>Special conditions, pay when you stay</li>
-                                    <li>Breakfast included</li>
-                                    <li>Free Parking</li>
+                                    <li>{{ room.options }}</li>
                                 </ul>
+
                             </td>
-                            <td class="room-price">$120</td>
+                            <td class="room-price">{{ room.prix }} TND</td>
                             <td> <a href="#" class="cws-button alt gray">Book now</a></td>
                         </tr>
-                        <tr>
-                            <td> <img src="pic/190x130.jpg" data-at2x="pic/190x130@2x.jpg" alt>
-                                <h6>Deluxe Room, Sea View</h6>
-                                <p class="mb-0">(Extra beds available: Crib, <br> Rollaway bed)</p>
-                            </td>
-                            <td>
-                                <div class="table-icon"><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people alt"></i><i class="flaticon-people alt"></i><i class="flaticon-people alt"></i></div>
-                                <p>2 guest</p>
-                            </td>
-                            <td>
-                                <ul class="style-1">
-                                    <li>Special conditions, pay when you stay</li>
-                                    <li>Breakfast included</li>
-                                    <li>Free Parking</li>
-                                    <li>Free Internet</li>
-                                </ul>
-                            </td>
-                            <td class="room-price">Sold out</td>
-                            <td> <a href="#" class="cws-button alt gray">Book now</a></td>
-                        </tr>
+                        {% endif %}
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

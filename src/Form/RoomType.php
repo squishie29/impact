@@ -17,6 +17,7 @@ class RoomType extends AbstractType
             ->add('options')
             ->add('type')
             ->add('prix')
+            ->add('idHotel')
         ;
     }
 
