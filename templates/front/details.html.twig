@@ -3,6 +3,7 @@
 {% block title %}Hello FrontController!{% endblock %}
 
 {% block body %}
+
     <div class="content-body">
         <section class="page-section pt-0 pb-50">
             <div class="container">
@@ -128,6 +129,7 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         {% for room in rooms %}
                         {% if hotel.name==room.idHotel %}
                         <tr>
@@ -141,8 +143,10 @@
                                 <p>{{ room.nbPersonnes }} guest</p>
                             </td>
                             <td>
+
                                 <ul class="style-1">
-                                    <li>{{ room.options }}</li>
+                                    <li id="demo">{{ room.options }}</li>
+
                                 </ul>
 
                             </td>
