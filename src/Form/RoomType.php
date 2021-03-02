@@ -14,7 +14,6 @@ class RoomType extends AbstractType
         $builder
             ->add('nb_personnes')
             ->add('description')
-            ->add('options')
             ->add('type')
             ->add('prix')
             ->add('idHotel')

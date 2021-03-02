@@ -30,11 +30,6 @@ class Room
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $options;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $type;
 
     /**
@@ -77,17 +72,6 @@ class Room
         return $this;
     }
 
-    public function getOptions(): ?string
-    {
-        return $this->options;
-    }
-
-    public function setOptions(string $options): self
-    {
-        $this->options = $options;
-
-        return $this;
-    }
 
     public function getType(): ?string
     {
