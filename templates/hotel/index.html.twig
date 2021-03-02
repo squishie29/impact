@@ -3,9 +3,9 @@
 {% block title %}Hotel index{% endblock %}
 
 {% block body %}
-    <h1>Hotel index</h1>
-
-    <table class="table">
+    <div class="table-responsive" style="margin-top:10px;">
+    <h4 style="margin: 5px;">Hotel index</h4>
+    <table class="table table-bordered table-hover table-striped mb-4">
         <thead>
             <tr>
                 <th>Id</th>
@@ -27,7 +27,7 @@
                 <td>{{ hotel.description }}</td>
                 <td>{{ hotel.adress }}</td>
                 <td>
-                    <a href="{{ path('hotel_show', {'id': hotel.id}) }}">show</a>
+                    <a href="{{ path('hotel_show', {'id': hotel.id}) }}" >show</a>
                     <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
                 </td>
             </tr>
@@ -38,6 +38,9 @@
         {% endfor %}
         </tbody>
     </table>
+        <a  class="btn-outline-primary" href="{{ path('hotel_new') }}">ADD NEW </a>
 
-    <a href="{{ path('hotel_new') }}">Create new</a>
+    </div>
+
+
 {% endblock %}

@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="78f7d74e-31de-44c9-a06c-6221bdb9e408" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/hotels.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/hotels.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HotelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HotelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,12 +147,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PIDEV2021\project\impact\templates\front" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PIDEV2021\project\impact\templates\front" />
       <recent name="D:\PIDEV2021\project\impact\templates\hotel" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PIDEV2021\project\impact\templates\front" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -171,7 +175,7 @@
       <updated>1614541732305</updated>
       <workItem from="1614541733979" duration="11348000" />
       <workItem from="1614623548773" duration="14776000" />
-      <workItem from="1614688149133" duration="2913000" />
+      <workItem from="1614688149133" duration="8341000" />
     </task>
     <servers />
   </component>
@@ -227,6 +231,12 @@
           <url>file://$PROJECT_DIR$/../../template web/suntour/hotels-list.html</url>
           <line>212</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../../template web/backoffice/designreset.com/cork/ltr/demo6/index.html</url>
+          <line>1436</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/templates/front/hotels.html.twig</url>
