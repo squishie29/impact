@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,21 @@ class Room
      * @ORM\JoinColumn(nullable=false)
      */
     private $idHotel;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Options::class, inversedBy="roomId")
+     */
+    private $options;
+
+    public function __toString()
+    {
+        return $this->type;
+    }
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +122,33 @@ class Room
     public function setIdHotel(?Hotel $idHotel): self
     {
         $this->idHotel = $idHotel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Options[]
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(Options $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->addRoomId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOption(Options $option): self
+    {
+        if ($this->options->removeElement($option)) {
+            $option->removeRoomId($this);
+        }
 
         return $this;
     }
