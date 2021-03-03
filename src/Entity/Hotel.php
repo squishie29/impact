@@ -49,6 +49,11 @@ class Hotel
      */
     private $rooms;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="hotel_id", orphanRemoval=true)
+     */
+    private $galleries;
+
     public function __toString()
     {
         return $this->name;
@@ -56,6 +61,7 @@ class Hotel
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,36 @@ class Hotel
             // set the owning side to null (unless already changed)
             if ($room->getIdHotel() === $this) {
                 $room->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gallery[]
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setHotelId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getHotelId() === $this) {
+                $gallery->setHotelId(null);
             }
         }
 

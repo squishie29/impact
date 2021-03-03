@@ -145,13 +145,32 @@
 
                             </td>
                             <td>
-                                <div class="table-icon"><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people"></i><i class="flaticon-people alt"></i></div>
-                                <p>{{ room.nbPersonnes }} guest</p>
+                                <div class="table-icon">
+                                    {% for i in 1..room.nbPersonnes %}
+                                    </i><i class="flaticon-people">
+                                        {% endfor %}
+                                        {% for i in 1..4-room.nbPersonnes %}
+                                    <i class="flaticon-people alt"></i>
+                                        {% endfor %}
+                                </div>
+
+                                <i class="flaticon-people">
+
                             </td>
                             <td>
 
                                 <ul class="style-1">
-                                        <li id="demo">room options</li>
+                                    {% for room in rooms %}
+                                        {% if hotel.name==room.idHotel %}
+                                            {% for option in options %}
+                                                {% if room.id2==option.room_id %}
+                                                    <li> {{ option.description}}</li>
+                                                    <br>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        {% endif %}
+                                    {% endfor %}
 
                                 </ul>
 
