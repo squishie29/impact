@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78f7d74e-31de-44c9-a06c-6221bdb9e408" name="Default Changelist" comment="" />
+    <list default="true" id="78f7d74e-31de-44c9-a06c-6221bdb9e408" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RoomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Options.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/room/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/room/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/room/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/room/show.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,7 +191,9 @@
       <updated>1614541732305</updated>
       <workItem from="1614541733979" duration="11348000" />
       <workItem from="1614623548773" duration="14776000" />
-      <workItem from="1614688149133" duration="16235000" />
+      <workItem from="1614688149133" duration="16855000" />
+      <workItem from="1614712413341" duration="790000" />
+      <workItem from="1614791710153" duration="6465000" />
     </task>
     <servers />
   </component>
@@ -201,6 +210,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="531" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1614637345108">
@@ -215,30 +225,30 @@
       <screen x="0" y="0" width="1603" height="862" />
     </state>
     <state x="580" y="171" key="FileChooserDialogImpl/0.0.1603.862@0.0.1603.862" timestamp="1614549787231" />
-    <state width="1559" height="223" key="GridCell.Tab.0.bottom" timestamp="1614701914264">
+    <state width="1559" height="223" key="GridCell.Tab.0.bottom" timestamp="1614712326387">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="223" key="GridCell.Tab.0.bottom/0.0.1603.862@0.0.1603.862" timestamp="1614701914264" />
-    <state width="1559" height="223" key="GridCell.Tab.0.center" timestamp="1614701914263">
+    <state width="1559" height="223" key="GridCell.Tab.0.bottom/0.0.1603.862@0.0.1603.862" timestamp="1614712326387" />
+    <state width="1559" height="223" key="GridCell.Tab.0.center" timestamp="1614712326387">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="223" key="GridCell.Tab.0.center/0.0.1603.862@0.0.1603.862" timestamp="1614701914263" />
-    <state width="1559" height="223" key="GridCell.Tab.0.left" timestamp="1614701914263">
+    <state width="1559" height="223" key="GridCell.Tab.0.center/0.0.1603.862@0.0.1603.862" timestamp="1614712326387" />
+    <state width="1559" height="223" key="GridCell.Tab.0.left" timestamp="1614712326387">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="223" key="GridCell.Tab.0.left/0.0.1603.862@0.0.1603.862" timestamp="1614701914263" />
-    <state width="1559" height="223" key="GridCell.Tab.0.right" timestamp="1614701914263">
+    <state width="1559" height="223" key="GridCell.Tab.0.left/0.0.1603.862@0.0.1603.862" timestamp="1614712326387" />
+    <state width="1559" height="223" key="GridCell.Tab.0.right" timestamp="1614712326387">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state width="1559" height="223" key="GridCell.Tab.0.right/0.0.1603.862@0.0.1603.862" timestamp="1614701914263" />
+    <state width="1559" height="223" key="GridCell.Tab.0.right/0.0.1603.862@0.0.1603.862" timestamp="1614712326387" />
     <state x="376" y="90" width="983" height="713" key="SettingsEditor" timestamp="1614550379546">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
     <state x="376" y="90" width="983" height="713" key="SettingsEditor/0.0.1603.862@0.0.1603.862" timestamp="1614550379546" />
-    <state x="514" y="163" width="582" height="534" key="find.popup" timestamp="1614706307276">
+    <state x="514" y="163" width="582" height="534" key="find.popup" timestamp="1614799066118">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
-    <state x="514" y="163" width="582" height="534" key="find.popup/0.0.1603.862@0.0.1603.862" timestamp="1614706307276" />
+    <state x="514" y="163" width="582" height="534" key="find.popup/0.0.1603.862@0.0.1603.862" timestamp="1614799066118" />
     <state x="457" y="196" width="672" height="677" key="run.anything.popup" timestamp="1614701908340">
       <screen x="0" y="0" width="1603" height="862" />
     </state>
@@ -255,7 +265,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../../template web/backoffice/designreset.com/cork/ltr/demo6/index.html</url>
           <line>1436</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

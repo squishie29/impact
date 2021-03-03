@@ -46,9 +46,15 @@ class Room
     private $idHotel;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Options::class, inversedBy="roomId")
+     * @ORM\ManyToMany(targetEntity=Options::class, mappedBy="roomId")
+     *
      */
     private $options;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="id_room")
+     */
+    private $options_id;
 
     public function __toString()
     {
@@ -58,6 +64,7 @@ class Room
     public function __construct()
     {
         $this->options = new ArrayCollection();
+        $this->options_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +155,36 @@ class Room
     {
         if ($this->options->removeElement($option)) {
             $option->removeRoomId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Options[]
+     */
+    public function getOptionsId(): Collection
+    {
+        return $this->options_id;
+    }
+
+    public function addOptionsId(Options $optionsId): self
+    {
+        if (!$this->options_id->contains($optionsId)) {
+            $this->options_id[] = $optionsId;
+            $optionsId->setIdRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOptionsId(Options $optionsId): self
+    {
+        if ($this->options_id->removeElement($optionsId)) {
+            // set the owning side to null (unless already changed)
+            if ($optionsId->getIdRoom() === $this) {
+                $optionsId->setIdRoom(null);
+            }
         }
 
         return $this;

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Room;
+use App\Entity\Options;
 use App\Form\RoomType;
+use App\Repository\OptionsRepository;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,10 +20,12 @@ class RoomController extends AbstractController
     /**
      * @Route("/", name="room_index", methods={"GET"})
      */
-    public function index(RoomRepository $roomRepository): Response
+    public function index(RoomRepository $roomRepository,OptionsRepository $optionsRepository): Response
     {
         return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findAll(),
+            'options' =>$optionsRepository->findAll(),
+
         ]);
     }
 

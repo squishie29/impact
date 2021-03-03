@@ -26,8 +26,14 @@ class Options
 
     /**
      * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="options")
+     *
      */
     private $roomId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="options_id")
+     */
+    private $id_room;
 
     public function __toString()
     {
@@ -76,6 +82,18 @@ class Options
     public function removeRoomId(Room $roomId): self
     {
         $this->roomId->removeElement($roomId);
+
+        return $this;
+    }
+
+    public function getIdRoom(): ?Room
+    {
+        return $this->id_room;
+    }
+
+    public function setIdRoom(?Room $id_room): self
+    {
+        $this->id_room = $id_room;
 
         return $this;
     }
