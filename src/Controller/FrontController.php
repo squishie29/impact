@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Hotel;
+use App\Entity\Options;
 use App\Entity\Room;
 use App\Repository\HotelRepository;
+use App\Repository\OptionsRepository;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,19 +28,21 @@ class FrontController extends AbstractController
      * @Route("/hotels", name="hotels", methods={"GET"})
      */
     public function affichehotels(HotelRepository $hotelRepository): Response
-    { dump("test");
+    {
         return $this->render('front/hotels.html.twig', [
             'hotels' => $hotelRepository->findAll(),
+
         ]);
     }
     /**
      * @Route("/hotels/{id}", name="hotel_shows", methods={"GET"},requirements={"id"="\d+"})
      */
-    public function show(Hotel $hotel, RoomRepository $roomRepository): Response
+    public function show(Hotel $hotel, RoomRepository $roomRepository,OptionsRepository $optionsRepository): Response
     {
         return $this->render('front/details.html.twig', [
             'hotel' => $hotel,
             'rooms' => $roomRepository->findAll(),
+            'options' =>$optionsRepository->findAll(),
         ]);
     }
 

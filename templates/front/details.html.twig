@@ -20,9 +20,9 @@
             <div class="container">
                 <div id="flex-slider" class="flexslider">
                     <ul class="slides">
-                        <li><img src="pic/flexslider/l-1.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-2.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-3.jpg" alt></li>
+                        <li><img src="/front/pic/tours/1.jpg" alt></li>
+                        <li><img src="/front/pic/tours/2.jpg" alt></li>
+                        <li><img src="/front/pic/tours/3.jpg" alt></li>
                         <li><img src="pic/flexslider/l-4.jpg" alt></li>
                         <li><img src="pic/flexslider/l-5.jpg" alt></li>
                         <li><img src="pic/flexslider/l-6.jpg" alt></li>
@@ -34,9 +34,9 @@
                 </div>
                 <div id="flex-carousel" class="flexslider">
                     <ul class="slides">
-                        <li><img src="pic/flexslider/1%402x.jpg" data-at2x="pic/flexslider/1@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/2.jpg" data-at2x="pic/flexslider/2@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/3.jpg" data-at2x="pic/flexslider/3@2x.jpg" alt></li>
+                        <li><img src="/front/pic/tours/1.jpg" alt></li>
+                        <li><img src="/front/pic/tours/2.jpg" alt></li>
+                        <li><img src="/front/pic/tours/3.jpg" alt></li>
                         <li><img src="pic/flexslider/4.jpg" data-at2x="pic/flexslider/4@2x.jpg" alt></li>
                         <li><img src="pic/flexslider/5.jpg" data-at2x="pic/flexslider/5@2x.jpg" alt></li>
                         <li><img src="pic/flexslider/6.jpg" data-at2x="pic/flexslider/6@2x.jpg" alt></li>
@@ -58,7 +58,13 @@
                             <ul class="style-1 mb-0">
                                  {% for room in rooms %}
                                      {% if hotel.name==room.idHotel %}
-                                <li>room options</li>
+                                         {% for option in options %}
+                                                 {% if room.id2==option.room_id %}
+                                                     <li> {{ option.description}}</li>
+                                                     <br>
+                                                 {% endif %}
+                                             {% endfor %}
+
                                      {% endif %}
                                 {% endfor %}
                         </div>
