@@ -13,6 +13,7 @@ class OptionsType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('room_id')
         ;
     }
 

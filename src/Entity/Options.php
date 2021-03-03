@@ -25,15 +25,13 @@ class Options
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="options")
-     *
+     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="options")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $roomId;
+    public $room_id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="options_id")
-     */
-    private $id_room;
+
+
 
     public function __toString()
     {
@@ -50,6 +48,8 @@ class Options
         return $this->id;
     }
 
+
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -61,6 +61,7 @@ class Options
 
         return $this;
     }
+
 
     /**
      * @return Collection|Room[]
@@ -86,15 +87,12 @@ class Options
         return $this;
     }
 
-    public function getIdRoom(): ?Room
+    public function setRoomId(?Room $room_id): self
     {
-        return $this->id_room;
-    }
-
-    public function setIdRoom(?Room $id_room): self
-    {
-        $this->id_room = $id_room;
+        $this->room_id = $room_id;
 
         return $this;
     }
+
+
 }

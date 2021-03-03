@@ -46,19 +46,17 @@ class Room
     private $idHotel;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Options::class, mappedBy="roomId")
-     *
+     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="room_id", orphanRemoval=true)
      */
-    private $options;
+    public $options;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="id_room")
-     */
-    private $options_id;
+    private $id2;
+
+
 
     public function __toString()
     {
-        return $this->type;
+        return $this->getId2();
     }
 
     public function __construct()
@@ -68,6 +66,10 @@ class Room
     }
 
     public function getId(): ?int
+    {
+        return $this->id;
+    }
+    public function getId2(): ?string
     {
         return $this->id;
     }
@@ -145,7 +147,7 @@ class Room
     {
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
-            $option->addRoomId($this);
+            $option->setRoomId($this);
         }
 
         return $this;
@@ -154,39 +156,14 @@ class Room
     public function removeOption(Options $option): self
     {
         if ($this->options->removeElement($option)) {
-            $option->removeRoomId($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Options[]
-     */
-    public function getOptionsId(): Collection
-    {
-        return $this->options_id;
-    }
-
-    public function addOptionsId(Options $optionsId): self
-    {
-        if (!$this->options_id->contains($optionsId)) {
-            $this->options_id[] = $optionsId;
-            $optionsId->setIdRoom($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOptionsId(Options $optionsId): self
-    {
-        if ($this->options_id->removeElement($optionsId)) {
             // set the owning side to null (unless already changed)
-            if ($optionsId->getIdRoom() === $this) {
-                $optionsId->setIdRoom(null);
+            if ($option->getRoomId() === $this) {
+                $option->setRoomId(null);
             }
         }
 
         return $this;
     }
+
+
 }

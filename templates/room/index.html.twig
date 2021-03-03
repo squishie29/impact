@@ -28,7 +28,12 @@
                 <td>{{ room.prix }}</td>
                 <td>{{ room.idHotel }}</td>
 
-                <td>{{ dump(options)}}</td>
+                <td>{% for option in options %}
+                        {% if room.id2==option.room_id %}
+                            {{ option.description}}
+                        {% endif %}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
                     <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
