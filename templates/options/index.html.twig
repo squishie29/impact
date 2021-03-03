@@ -3,9 +3,9 @@
 {% block title %}Options index{% endblock %}
 
 {% block body %}
-    <h1>Options index</h1>
+<h4 style="margin: 5px;">Options index</h4>
 
-    <table class="table">
+    <table class="table table-bordered table-hover table-striped mb-4">
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('options_new') }}">Create new</a>
+    <a class="btn-outline-primary" href="{{ path('options_new') }}">ADD NEW</a>
 {% endblock %}
