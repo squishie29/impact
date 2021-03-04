@@ -6,6 +6,7 @@ use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RoomRepository::class)
@@ -21,6 +22,10 @@ class Room
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     *     pattern="/^[1-4]+$/",
+     *     message="maximum number of people in the room between 1 and 4"
+     * )
      */
     private $nb_personnes;
 
@@ -36,6 +41,10 @@ class Room
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\GreaterThanOrEqual(
+     *     value=0,
+     *     message="price must be positive"
+     * )
      */
     private $prix;
 
