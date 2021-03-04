@@ -66,6 +66,7 @@ class Options
     /**
      * @return Collection|Room[]
      */
+    /*
     public function getRoomId(): Collection
     {
         return $this->roomId;
@@ -92,7 +93,7 @@ class Options
         $this->room_id = $room_id;
 
         return $this;
-    }
+    }*/
 
 
 }
