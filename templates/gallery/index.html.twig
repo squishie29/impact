@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Imgpath</th>
+                <th>Hotel name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,8 @@
             <tr>
                 <td>{{ gallery.id }}</td>
                 <td>{{ gallery.imgpath }}</td>
+                <td>{{ gallery.hotel_id }}</td>
+
                 <td>
                     <a href="{{ path('gallery_show', {'id': gallery.id}) }}">show</a>
                     <a href="{{ path('gallery_edit', {'id': gallery.id}) }}">edit</a>

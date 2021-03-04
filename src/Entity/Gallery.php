@@ -26,7 +26,13 @@ class Gallery
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="galleries")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $hotel_id;
+    public $hotel_id;
+
+    public function __toString()
+    {
+        return $this->imgpath;
+    }
+
 
     public function getId(): ?int
     {

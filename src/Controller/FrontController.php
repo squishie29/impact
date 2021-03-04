@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Hotel;
 use App\Entity\Options;
 use App\Entity\Room;
+use App\Repository\GalleryRepository;
 use App\Repository\HotelRepository;
 use App\Repository\OptionsRepository;
 use App\Repository\RoomRepository;
@@ -37,12 +38,14 @@ class FrontController extends AbstractController
     /**
      * @Route("/hotels/{id}", name="hotel_shows", methods={"GET"},requirements={"id"="\d+"})
      */
-    public function show(Hotel $hotel, RoomRepository $roomRepository,OptionsRepository $optionsRepository): Response
+    public function show(Hotel $hotel, RoomRepository $roomRepository,OptionsRepository $optionsRepository,GalleryRepository $galleryRepository): Response
     {
         return $this->render('front/details.html.twig', [
             'hotel' => $hotel,
             'rooms' => $roomRepository->findAll(),
             'options' =>$optionsRepository->findAll(),
+            'galleries' =>$galleryRepository->findAll(),
+
         ]);
     }
 

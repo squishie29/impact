@@ -20,30 +20,22 @@
             <div class="container">
                 <div id="flex-slider" class="flexslider">
                     <ul class="slides">
-                        <li><img src="/front/pic/tours/1.jpg" alt></li>
-                        <li><img src="/front/pic/tours/2.jpg" alt></li>
-                        <li><img src="/front/pic/tours/3.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-4.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-5.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-6.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-7.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-8.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-9.jpg" alt></li>
-                        <li><img src="pic/flexslider/l-1.jpg" alt></li>
+
+                        {% for gallery in galleries %}
+                            {% if hotel.name==gallery.hotel_id %}
+                            <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
+                            {% endif %}
+
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="flex-carousel" class="flexslider">
                     <ul class="slides">
-                        <li><img src="/front/pic/tours/1.jpg" alt></li>
-                        <li><img src="/front/pic/tours/2.jpg" alt></li>
-                        <li><img src="/front/pic/tours/3.jpg" alt></li>
-                        <li><img src="pic/flexslider/4.jpg" data-at2x="pic/flexslider/4@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/5.jpg" data-at2x="pic/flexslider/5@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/6.jpg" data-at2x="pic/flexslider/6@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/7%402x.jpg" data-at2x="pic/flexslider/7@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/8%402x.jpg" data-at2x="pic/flexslider/8@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/9.jpg" data-at2x="pic/flexslider/9@2x.jpg" alt></li>
-                        <li><img src="pic/flexslider/1.jpg" data-at2x="pic/flexslider/1@2x.jpg" alt></li>
+                        {% for gallery in galleries %}
+                            {% if hotel.name==gallery.hotel_id %}
+                                <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -148,9 +140,6 @@
                                 <div class="table-icon">
                                     {% for i in 1..room.nbPersonnes %}
                                     </i><i class="flaticon-people">
-                                        {% endfor %}
-                                        {% for i in 1..4-room.nbPersonnes %}
-                                    <i class="flaticon-people alt"></i>
                                         {% endfor %}
                                 </div>
 
