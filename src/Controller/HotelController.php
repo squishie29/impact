@@ -7,6 +7,7 @@ use App\Form\HotelType;
 use App\Repository\HotelRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,42 @@ class HotelController extends AbstractController
      */
     public function index(HotelRepository $hotelRepository): Response
     {
+        
+        $hotel = new Hotel();
+        $form = $this->createForm(HotelType::class, $hotel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $photo = $form->get('image')->getData();
+
+
+            if ($photo)
+            {
+                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = transliteratortransliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9] remove; Lower()', $originalFilename);
+                $fileName = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
+
+                try{
+                    $photo->move(
+                        $this->getParameter('image_directory'),$fileName);
+                } catch (FileException $e)
+                {
+
+                }
+
+                $hotel->setImage($fileName);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($hotel);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('hotel_index');
+        }
+
+
+
+
         return $this->render('hotel/index.html.twig', [
             'hotels' => $hotelRepository->findAll(),
         ]);
