@@ -50,7 +50,7 @@ class HotelController extends AbstractController
 
                 try{
                     $image->move(
-                        $this->getParameter('image_directory'),$fileName);
+                        $this->getParameter('imagehotel_directory'),$fileName);
                 } catch (FileException $e)
                 {
 
@@ -93,7 +93,34 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
 
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get('photo')->getData();
+
+
+            if ($image)
+            {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $originalFilename;
+                $fileName = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+                try{
+                    $image->move(
+                        $this->getParameter('imagehotel_directory'),$fileName);
+                } catch (FileException $e)
+                {
+
+                }
+
+                $hotel->setPhoto($fileName);
+            }
+
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('hotel_index');
