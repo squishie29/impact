@@ -21,10 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="78f7d74e-31de-44c9-a06c-6221bdb9e408" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HotelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HotelController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/HotelType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/HotelType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front/hotels.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/hotels.html.twig" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/templates/gallery/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gallery/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/gallery/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gallery/index.html.twig" afterDir="false" />
+>>>>>>> parent of 95d1110 (visual update)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,11 +201,15 @@
       <workItem from="1614799779265" duration="12143000" />
       <workItem from="1614812297308" duration="5851000" />
       <workItem from="1614820147860" duration="2704000" />
+<<<<<<< HEAD
       <workItem from="1614849809201" duration="3661000" />
       <workItem from="1614860305609" duration="4235000" />
       <workItem from="1614885307210" duration="1241000" />
       <workItem from="1614886744701" duration="1431000" />
       <workItem from="1615226106370" duration="2009000" />
+=======
+      <workItem from="1614849809201" duration="2844000" />
+>>>>>>> parent of 95d1110 (visual update)
     </task>
     <servers />
   </component>
