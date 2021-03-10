@@ -105,7 +105,7 @@
 
                             <div class="recom-price"><span class="font-4">$90</span> per night</div>
 
-                            <p class="mb-30">{{ hotel.description }}</p><a href="{{ path('hotel_shows', {'id': hotel.id}) }}" class="recom-button">Read more</a><a href="{{ path('hotel_shows', {'id': hotel.id}) }}" class="cws-button small alt">Book now</a>
+                            <p class="mb-30"> {{ hotel.description|raw }} </p><a href="{{ path('hotel_shows', {'id': hotel.id}) }}" class="recom-button">Read more</a><a href="{{ path('hotel_shows', {'id': hotel.id}) }}" class="cws-button small alt">Book now</a>
                             <div class="action font-2">20%</div>
                         </div>
                         <!-- Recomended Image-->

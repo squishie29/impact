@@ -43,7 +43,7 @@
                 <h4 class="mb-20">{{ hotel.name }}</h4>
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="mb-15">{{ hotel.description }}</p>
+                        <p class="mb-15">{{ hotel.description|raw }}</p>
                     </div>
                     <div class="col-md-4">
                         <div class="bg-gray-3 p-30-40">
@@ -175,8 +175,40 @@
                         <h4 class="trans-uppercase mb-10">Location</h4>
                         <div class="cws_divider mb-30"></div>
                         <!-- google map-->
-                        <div class="map-wrapper">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25295.930156304785!2d16.371063311644324!3d48.208404844730474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07986fcad78b%3A0x73f5a4d267cc4174!2zTmFnbGVyZ2Fzc2UgMTAsIDEwMTAgV2llbiwg0JDQstGB0YLRgNC40Y8!5e0!3m2!1sru!2sua!4v1453294615596" allowfullscreen=""></iframe>
+                        <div >
+                            <div id="map"></div>
+                            <style>
+                                #map{
+                                    width: 100%;
+                                    height: 50vh;
+                                    border: 1px solid #e6e6e6;
+                                    overflow: hidden;
+                                    position: relative;
+                                }
+                            </style>
+                            <script>
+                                function initMap(){
+
+                                    // The location of Uluru
+                                    const uluru = { lat: -25.344, lng: 131.036 };
+                                    // The map, centered at Uluru
+                                    const map = new google.maps.Map(document.getElementById("map"), {
+                                        zoom: 4,
+                                        center: uluru,
+                                    });
+                                    // The marker, positioned at Uluru
+                                    const marker = new google.maps.Marker({
+                                        position: uluru,
+                                        map: map,
+                                    });
+
+                                }
+
+                            </script>
+                            <script
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6IL7oprL6aD28my4cpdBbvN5NOM6nuWM&callback=initMap&libraries=&v=weekly"
+                                    async
+                            ></script>
                         </div>
                         <ul class="icon inline mt-20">
                             <li> <a href="#">9300 Meadow Lane, Kalamazoo, MI 49009<i class="flaticon-suntour-map"></i></a></li>
