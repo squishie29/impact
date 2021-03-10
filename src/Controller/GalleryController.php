@@ -6,6 +6,7 @@ use App\Entity\Gallery;
 use App\Form\GalleryType;
 use App\Repository\GalleryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +35,34 @@ class GalleryController extends AbstractController
         $form = $this->createForm(GalleryType::class, $gallery);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get('imgpath')->getData();
+
+
+            if ($image)
+            {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $originalFilename;
+                $fileName = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+                try{
+                    $image->move(
+                        $this->getParameter('imagegallery_directory'),$fileName);
+                } catch (FileException $e)
+                {
+
+                }
+
+                $gallery->setImgpath($fileName);
+            }
+
+
+
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($gallery);
             $entityManager->flush();

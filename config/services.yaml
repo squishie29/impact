@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     imagehotel_directory: '%kernel.project_dir%/public/front/pic/tours'
+    imagegallery_directory: '%kernel.project_dir%/public/gallery'
 
 services:
     # default configuration for services in *this* file
