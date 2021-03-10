@@ -61,6 +61,11 @@ class Room
 
     private $id2;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationHotel::class, mappedBy="roomId", orphanRemoval=true)
+     */
+    private $reservationHotels;
+
 
 
     public function __toString()
@@ -72,6 +77,7 @@ class Room
     {
         $this->options = new ArrayCollection();
         $this->options_id = new ArrayCollection();
+        $this->reservationHotels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +174,36 @@ class Room
             // set the owning side to null (unless already changed)
             if ($option->getRoomId() === $this) {
                 $option->setRoomId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationHotel[]
+     */
+    public function getReservationHotels(): Collection
+    {
+        return $this->reservationHotels;
+    }
+
+    public function addReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if (!$this->reservationHotels->contains($reservationHotel)) {
+            $this->reservationHotels[] = $reservationHotel;
+            $reservationHotel->setRoomId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if ($this->reservationHotels->removeElement($reservationHotel)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationHotel->getRoomId() === $this) {
+                $reservationHotel->setRoomId(null);
             }
         }
 
