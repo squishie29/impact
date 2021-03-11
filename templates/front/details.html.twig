@@ -21,6 +21,7 @@
                 <div id="flex-slider" class="flexslider">
                     <ul class="slides">
 
+
                         {% for gallery in galleries %}
                             {% if hotel.name==gallery.hotel_id %}
                             <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
@@ -59,6 +60,7 @@
 
                                      {% endif %}
                                 {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -177,36 +179,64 @@
                         <!-- google map-->
                         <div >
                             <div id="map"></div>
-                            <style>
-                                #map{
-                                    width: 100%;
-                                    height: 50vh;
-                                    border: 1px solid #e6e6e6;
-                                    overflow: hidden;
-                                    position: relative;
+                            <div id="floating-panel">
+                                <input id="address" type="textbox" value="Sydney, NSW" />
+                                <input id="submit" type="button" value="Geocode" />
+                            </div>
+                            <style type="text/css">
+                                /* Always set the map height explicitly to define the size of the div
+                                 * element that contains the map. */
+                                #map {
+                                    height: 40vh;
+                                }
+
+
+                                #floating-panel {
+                                    position: absolute;
+                                    top: 10px;
+                                    left: 25%;
+                                    z-index: 5;
+                                    background-color: #fff;
+                                    padding: 5px;
+                                    border: 1px solid #999;
+                                    text-align: center;
+                                    font-family: "Roboto", "sans-serif";
+                                    line-height: 30px;
+                                    padding-left: 10px;
                                 }
                             </style>
+
                             <script>
-                                function initMap(){
-
-                                    // The location of Uluru
-                                    const uluru = { lat: -25.344, lng: 131.036 };
-                                    // The map, centered at Uluru
+                                function initMap() {
                                     const map = new google.maps.Map(document.getElementById("map"), {
-                                        zoom: 4,
-                                        center: uluru,
+                                        zoom: 8,
+                                        center: { lat: -34.397, lng: 150.644 },
                                     });
-                                    // The marker, positioned at Uluru
-                                    const marker = new google.maps.Marker({
-                                        position: uluru,
-                                        map: map,
+                                    const geocoder = new google.maps.Geocoder();
+                                    document.getElementById("submit").addEventListener("click", () => {
+                                        geocodeAddress(geocoder, map);
                                     });
-
                                 }
 
+                                function geocodeAddress(geocoder, resultsMap) {
+                                    const address = document.getElementById("address").value;
+                                    geocoder.geocode({ address: address }, (results, status) => {
+                                        if (status === "OK") {
+                                            resultsMap.setCenter(results[0].geometry.location);
+                                            new google.maps.Marker({
+                                                map: resultsMap,
+                                                position: results[0].geometry.location,
+                                            });
+                                        } else {
+                                            alert(
+                                                "Geocode was not successful for the following reason: " + status
+                                            );
+                                        }
+                                    });
+                                }
                             </script>
                             <script
-                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6IL7oprL6aD28my4cpdBbvN5NOM6nuWM&callback=initMap&libraries=&v=weekly"
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdFbBA2--2BK9a7MpjL-cyvPU0M_rUETA&callback=initMap&libraries=&v=weekly"
                                     async
                             ></script>
                         </div>

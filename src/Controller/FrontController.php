@@ -20,6 +20,7 @@ class FrontController extends AbstractController
      */
     public function index(): Response
     {
+
         return $this->render('front/index.html.twig', [
             'controller_name' => 'FrontController',
         ]);
@@ -40,11 +41,17 @@ class FrontController extends AbstractController
      */
     public function show(Hotel $hotel, RoomRepository $roomRepository,OptionsRepository $optionsRepository,GalleryRepository $galleryRepository): Response
     {
+
+        $geocoder = new \OpenCage\Geocoder\Geocoder('50ca3024fa7f45bca607020d281a8faa');
+        $result = $geocoder->geocode('tunis');
+
+
         return $this->render('front/details.html.twig', [
             'hotel' => $hotel,
             'rooms' => $roomRepository->findAll(),
             'options' =>$optionsRepository->findAll(),
             'galleries' =>$galleryRepository->findAll(),
+            'result' =>$result,
 
         ]);
     }
