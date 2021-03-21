@@ -47,4 +47,16 @@ class HotelRepository extends ServiceEntityRepository
         ;
     }
     */
+   public function findEntitiesByString($value)
+   {
+       return $this->createQueryBuilder('h')
+           ->andWhere('h.name = :val')
+           ->setParameter('val', $value)
+           ->orderBy('h.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+           ;
+   }
+
 }

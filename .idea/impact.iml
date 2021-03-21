@@ -116,5 +116,6 @@
     <orderEntry type="library" name="mapsjs-core" level="application" />
     <orderEntry type="library" name="mapsjs-ui" level="application" />
     <orderEntry type="library" name="mapsjs-mapevents" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

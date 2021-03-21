@@ -125,7 +125,7 @@
                             <th>Max.</th>
                             <th>Options</th>
                             <th>Today's price</th>
-                            <th>Booking</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -134,7 +134,7 @@
                         {% if hotel.name==room.idHotel %}
                         <tr>
 
-                            <td> <img src="pic/190x130.jpg" data-at2x="pic/190x130@2x.jpg" alt>
+                            <td>
                                 <h6>{{ room.type }}</h6>
 
                             </td>
@@ -162,12 +162,18 @@
 
                             </td>
                             <td class="room-price">{{ room.prix }} TND</td>
-                            <td> <a href="#" class="cws-button alt gray">Book now</a></td>
+
+                             <td> <p>{{ room.description }}</p></td>
                         </tr>
                         {% endif %}
                         {% endfor %}
+
                         </tbody>
+
                     </table>
+                    <div style="display:flex;justify-content:space-around;margin-top: 10px;">
+                        <a href="{{ path('reservationNew', {'id': hotel.id}) }}" class="cws-button alt " style="width: 20vw;">Book now 1</a>
+                    </div>
                 </div>
             </div>
             <!-- section location-->

@@ -1,0 +1,38 @@
+{{ form_start(form) }}
+
+
+    {{ form_row(form.debut)}}
+    {{ form_row(form.fin)}}
+    {{ form_row(form.userId)}}
+<div class="d-none">
+    {{ form_row(form.roomId) }}
+</div>
+    <label for="room"> Room </label>
+    <select name="room" id="room">
+        {% for i in form.roomId.vars.choices %}
+            
+            {% set x = i.value %}
+            {% set idHotel = form.roomId.vars.choices[x].data.idHotel.id %}
+
+            {% if idHotel == hotel.id %}
+                <option value=""> room id {{ x }} | hotel id {{ idHotel }}</option>
+            {% endif %}
+            
+        {% endfor %}
+
+    </select>
+<br>
+{#{{ dump(hotel) }}#}
+{#{% for i in form.roomId.vars.choices %}#}
+{#    {% set x = i.value %}#}
+{#    {{ x }}#}
+{#    {{ dump(form.roomId.vars.choices[x].data.idHotel.id) }}#}
+
+{#{% endfor %}#}
+
+
+
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}
