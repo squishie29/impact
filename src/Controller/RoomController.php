@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @Route("/room")
@@ -53,7 +54,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="room_show", methods={"GET"})
+     * @Route("/{id}", name="room_show", methods={"GET"},requirements={"id"="\d+"})
      */
     public function show(Room $room): Response
     {
@@ -94,5 +95,19 @@ class RoomController extends AbstractController
         }
 
         return $this->redirectToRoute('room_index');
+    }
+
+    /**
+     * @Route("/searchRoomx",name="searchRoomx")
+     */
+    public function searchRoomx(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Room::class);
+        $requestString=$request->get('searchValue');
+        $Rooms= $repository->findRoomByDescription($requestString);
+        $jsonContent = $Normalizer->normalize($Rooms, 'json',['groups'=>'post:rooms']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
     }
 }

@@ -6,6 +6,7 @@ use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,6 +18,7 @@ class Room
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:rooms")
      */
     private $id;
 
@@ -26,16 +28,19 @@ class Room
      *     pattern="/^[1-4]+$/",
      *     message="maximum number of people in the room between 1 and 4"
      * )
+     * @Groups("post:rooms")
      */
     private $nb_personnes;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:rooms")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:rooms")
      */
     private $type;
 
@@ -45,17 +50,20 @@ class Room
      *     value=0,
      *     message="price must be positive"
      * )
+     * @Groups("post:rooms")
      */
     private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("post:rooms")
      */
     private $idHotel;
 
     /**
      * @ORM\OneToMany(targetEntity=Options::class, mappedBy="room_id", orphanRemoval=true)
+     * @Groups("post:rooms")
      */
     public $options;
 
