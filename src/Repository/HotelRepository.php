@@ -19,6 +19,17 @@ class HotelRepository extends ServiceEntityRepository
         parent::__construct($registry, Hotel::class);
     }
 
+    public function findHotelByName($name){
+        return $this->createQueryBuilder('hotel')
+            ->where('hotel.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
     // /**
     //  * @return Hotel[] Returns an array of Hotel objects
     //  */

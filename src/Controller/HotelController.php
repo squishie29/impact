@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @Route("/hotel")
@@ -147,7 +148,20 @@ class HotelController extends AbstractController
         return $this->redirectToRoute('hotel_index');
     }
 
-    
+    /**
+     * @Route("/searchHotelx ", name="searchHotelx")
+     */
+    public function searchHotelx(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $requestString=$request->get('searchValue');
+        $hotels= $repository->findHotelByName($requestString);
+        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'post:read']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
 
 
 }
