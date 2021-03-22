@@ -72,8 +72,10 @@
                         if(retour){
                             $('#t tbody#search').empty();
                             $.each(JSON.parse(retour), function(i, obj) {
+                                console.log(obj);
+                                console.log("obj");
                                 $('#t tbody#all').hide();
-                                $('#t tbody#search').append('<tr><td>'+obj.id+'</td><td>'+obj.nb_personnes+'</td><td>'+obj.description+'</td><td>'+obj.type+'</td><td>'+obj.prix+'</td><td>'+obj.id2+'</td><td>'+obj.options.description+'</td><td><a href="'+obj.id+'">show</a><br><a href="'+obj.id+'/edit">edit</a></tr>');
+                                $('#t tbody#search').append('<tr><td>'+obj.id+'</td><td>'+obj.nb_personnes+'</td><td>'+obj.description+'</td><td>'+obj.type+'</td><td>'+obj.prix+'</td><td>'+obj.idHotel.name+'</td><td>'+obj.options+'</td><td><a href="'+obj.id+'">show</a><br><a href="'+obj.id+'/edit">edit</a></tr>');
                             });
                         }
                         else

@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 class FrontController extends AbstractController
@@ -168,5 +169,17 @@ class FrontController extends AbstractController
         return $realEntities;
     }
 
+    /**
+     * @Route("/searchHotelx ", name="searchHotelx")
+     */
+    public function searchHotelx(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $requestString=$request->get('searchValue');
+        $hotels= $repository->findHotelByName($requestString);
+        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'post:read']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
 
+    }
 }
