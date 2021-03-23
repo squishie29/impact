@@ -22,10 +22,28 @@ class OptionsController extends AbstractController
     /**
      * @Route("/", name="options_index", methods={"GET"})
      */
-    public function index(OptionsRepository $optionsRepository): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory,OptionsRepository $optionsRepository)
     {
+        $table = $dataTableFactory->create()
+
+            ->add('description', TextColumn::class,['label' => 'Description','searchable'=>true])
+            ->add('room_id', TextColumn::class,['field' => 'room_id.id','label' => 'Room Id','searchable'=>false])
+            ->add('id', TextColumn::class, ['label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+            }])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => Options::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         return $this->render('options/index.html.twig', [
+            'datatable' => $table,
             'options' => $optionsRepository->findAll(),
+
         ]);
     }
 
@@ -97,29 +115,7 @@ class OptionsController extends AbstractController
     }
 
 
-    /**
-     * @Route("/test", name="options_test", methods={"GET"})
-     */
-    public function showAction(Request $request, DataTableFactory $dataTableFactory)
-    {
-        $table = $dataTableFactory->create()
-            ->add('id', TextColumn::class,['label' => 'Option Id','searchable'=>false])
-            ->add('description', TextColumn::class,['label' => 'Description','searchable'=>true])
-            ->add('room_id', TextColumn::class,['field' => 'room_id.id','label' => 'Room Id','searchable'=>false])
-            ->createAdapter(ORMAdapter::class, [
-                'entity' => Options::class,
-            ])
-            ->handleRequest($request);
-
-        if ($table->isCallback()) {
-            return $table->getResponse();
-        }
-
-        return $this->render('options/test.html.twig', [
-            'datatable' => $table,
-
-        ]);
-    }
 
 }
+
 
