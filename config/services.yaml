@@ -6,6 +6,16 @@
 parameters:
     imagehotel_directory: '%kernel.project_dir%/public/front/pic/tours'
     imagegallery_directory: '%kernel.project_dir%/public/gallery'
+datatables:
+    language_from_cdn:    true
+    method:               GET
+    persist_state:        fragment
+    renderer:             Omines\DataTablesBundle\Twig\TwigRenderer
+    template:             '@DataTables/datatable_html.html.twig'
+    template_parameters:
+        className:        'table table-bordered '
+        columnFilter:     null
+    translation_domain:   messages
 
 services:
     # default configuration for services in *this* file

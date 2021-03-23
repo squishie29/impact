@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.8",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "knplabs/knp-paginator-bundle": "^5.4",
+        "omines/datatables-bundle": "^0.5.3",
         "opencage/geocode": "^3.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",

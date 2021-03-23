@@ -31,6 +31,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-zendframework-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/omines/datatables-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opencage/geocode" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -117,5 +118,6 @@
     <orderEntry type="library" name="mapsjs-ui" level="application" />
     <orderEntry type="library" name="mapsjs-mapevents" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="datatables" level="application" />
   </component>
 </module>

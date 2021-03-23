@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\Options;
 use App\Form\OptionsType;
 use App\Repository\OptionsRepository;
+use Omines\DataTablesBundle\Adapter\ArrayAdapter;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,7 +53,7 @@ class OptionsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="options_show", methods={"GET"})
+     * @Route("/{id}", name="options_show", methods={"GET"},requirements={"id"="\d+"})
      */
     public function show(Options $option): Response
     {
@@ -91,4 +95,31 @@ class OptionsController extends AbstractController
 
         return $this->redirectToRoute('options_index');
     }
+
+
+    /**
+     * @Route("/test", name="options_test", methods={"GET"})
+     */
+    public function showAction(Request $request, DataTableFactory $dataTableFactory)
+    {
+        $table = $dataTableFactory->create()
+            ->add('id', TextColumn::class,['label' => 'Option Id','searchable'=>false])
+            ->add('description', TextColumn::class,['label' => 'Description','searchable'=>true])
+            ->add('room_id', TextColumn::class,['field' => 'room_id.id','label' => 'Room Id','searchable'=>false])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => Options::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
+        return $this->render('options/test.html.twig', [
+            'datatable' => $table,
+
+        ]);
+    }
+
 }
+
