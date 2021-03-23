@@ -28,7 +28,7 @@ class OptionsController extends AbstractController
 
             ->add('description', TextColumn::class,['label' => 'Description','searchable'=>true])
             ->add('room_id', TextColumn::class,['field' => 'room_id.id','label' => 'Room Id','searchable'=>false])
-            ->add('id', TextColumn::class, ['label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+            ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
                 return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
             }])
             ->createAdapter(ORMAdapter::class, [

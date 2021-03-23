@@ -1,42 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ReservationHotel index{% endblock %}
+{% block title %}Options test{% endblock %}
+
 
 {% block body %}
-    <h1>ReservationHotel index</h1>
+    <h4>Options</h4>
+    <!-- in the <head> section -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+    <!-- before the closing <body> tag -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <!-- Insert this where you want the table to appear -->
+    <div class="table table-bordered table-hover table-striped mb-4" id="presidents2">Loading...</div>
+    <a class="btn-outline-primary" href="{{ path('options_new') }}">ADD NEW</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Id room</th>
-                <th>Email user</th>
-                <th>Debut</th>
 
-                <th>Fin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reservation_hotel in reservation_hotels %}
-            <tr>
-                <td>{{ reservation_hotel.id }}</td>
-                <td>{{ reservation_hotel.roomId}}</td>
-                <td>{{ reservation_hotel.userId }}</td>
-                <td>{{ reservation_hotel.debut ? reservation_hotel.debut|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation_hotel.fin ? reservation_hotel.fin|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('reservation_hotel_show', {'id': reservation_hotel.id}) }}">show</a>
-                    <a href="{{ path('reservation_hotel_edit', {'id': reservation_hotel.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('reservation_hotel_new') }}">Create new</a>
+
+
+
+
+    <!-- Insert this at the end of your body element, but before the closing tag -->
+    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+    <script>
+        $(function() {
+            $('#presidents2').initDataTables({{ datatable_settings(datatable2) }}, { searching: true,});
+
+        });
+
+
+
+
+    </script>
+
+
 {% endblock %}

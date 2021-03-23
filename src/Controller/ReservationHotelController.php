@@ -5,6 +5,11 @@ namespace App\Controller;
 use App\Entity\ReservationHotel;
 use App\Form\ReservationHotelType;
 use App\Repository\ReservationHotelRepository;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\DateTimeColumn;
+use Omines\DataTablesBundle\Column\MapColumn;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +23,32 @@ class ReservationHotelController extends AbstractController
     /**
      * @Route("/", name="reservation_hotel_index", methods={"GET"})
      */
-    public function index(ReservationHotelRepository $reservationHotelRepository): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory,ReservationHotelRepository $reservationHotelRepository): Response
     {
+        $table = $dataTableFactory->create()
+
+            ->add('userId', TextColumn::class, ['label' => 'userId', 'orderable'=> true, 'field' => 'userId.email'])
+            ->add('roomId', TextColumn::class, ['label' => 'roomId', 'orderable'=> true, 'field' => 'roomId.id'])
+            ->add('debut', DateTimeColumn::class, ['label' => 'date debut','format' => 'd-m-Y'])
+            ->add('fin', DateTimeColumn::class, ['label' => 'date fin','format' => 'd-m-Y'])
+            ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+            }])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => reservationHotel::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         return $this->render('reservation_hotel/index.html.twig', [
+            'datatable2' => $table,
             'reservation_hotels' => $reservationHotelRepository->findAll(),
+
         ]);
+
     }
 
     /**
