@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Hotel;
 use App\Form\HotelType;
 use App\Repository\HotelRepository;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -21,12 +24,34 @@ class HotelController extends AbstractController
     /**
      * @Route("/", name="hotel_index", methods={"GET"})
      */
-    public function index(HotelRepository $hotelRepository): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory,HotelRepository $hotelRepository): Response
     {
 
 
+        $table = $dataTableFactory->create()
+
+            ->add('name', TextColumn::class, ['label' => 'name', 'orderable'=> true,'searchable'=>true,])
+            ->add('stars', TextColumn::class, ['label' => 'stars', 'orderable'=> true,'searchable'=>false,])
+            ->add('photo', TextColumn::class, ['label' => 'photo', 'orderable'=> true,'searchable'=>false,])
+            ->add('description', TextColumn::class, ['label' => 'description', 'orderable'=> true,'searchable'=>false,])
+            ->add('adress', TextColumn::class, ['label' => 'adress', 'orderable'=> true,'searchable'=>false,])
+
+            ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+            }])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => Hotel::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         return $this->render('hotel/index.html.twig', [
-            'hotels' => $hotelRepository->findAll(),
+            'datatable4' => $table,
+            'Hotel' => $hotelRepository->findAll(),
+
         ]);
     }
 

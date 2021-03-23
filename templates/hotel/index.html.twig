@@ -1,97 +1,36 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}Hotels test{% endblock %}
+
+
 {% block body %}
-    <div class="table-responsive" style="margin-top:10px;">
-
-    <h1 id="dd1" style="margin: 5px;" > Hotel index</h1>
-    </br>
-        <a  class="btn-outline-primary" href="{{ path('hotel_new') }}">ADD NEW </a>
-    </div>
-    <input type="text" id="search" class="form-control" placeholder="Search">
-    <div>
-        <table border="1" id="t" class="table table-bordered table-hover table-striped mb-4">
-            <thead class="thead-dark">
-            <tr>
-                <td  >ID</td>
-                <td >name</td>
-                <td >stars</td>
-                <td >photo</td>
-                <td >description</td>
-                <td >adress</td>
-                <td >actions</td>
-            </tr>
-            </thead>
-            <tbody id="all">
-            {% for hotel in hotels %}
-                <tr>
-                    <td>
-                        {{ hotel.id }}
-                    </td>
-                    <td>
-                        {{ hotel.name }}
-                    </td>
-                    <td>
-                        {{ hotel.stars }}
-                    </td>
-                    <td>
-                        {{ hotel.photo }}
-                    </td>
-                    <td>
-                        {{ hotel.description }}
-                    </td>
-                    <td>
-                        {{ hotel.adress }}
-                    </td>
+    <h4>Hotels</h4>
+    <!-- in the <head> section -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+    <!-- before the closing <body> tag -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <!-- Insert this where you want the table to appear -->
+    <div class="table table-bordered table-hover table-striped mb-4" id="presidents4">Loading...</div>
+    <a class="btn-outline-primary" href="{{ path('hotel_new') }}">ADD NEW</a>
 
 
-                    <td>
-                        <a href="{{ path('hotel_show', {'id': hotel.id}) }}"> show</a>
-                        <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-            <tbody id="search">
-            </tbody>
-        </table>
-    </div>
-    </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-</script>
-<script>
-    $( document ).ready(function() {
-        $("#search").keyup(function(e){
-            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
-            var value = $(this).val();
-            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
-            $.ajax({
-                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
-                url : "{{ path('searchHotelx') }}",
-                /* La méthode utilisée pour transférer les données est GET */
-                type : 'GET',
-                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
-                data: {
-                    'searchValue' : value
-                },
-                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
-                success : function(retour){
-                    if(retour){
-                        $('#t tbody#search').empty();
-                        $.each(JSON.parse(retour), function(i, obj) {
-                            $('#t tbody#all').hide();
-                                $('#t tbody#search').append('<tr><td>'+obj.id+'</td><td>'+obj.name+'</td><td>'+obj.stars+'</td><td>'+obj.photo+'</td><td>'+obj.description+'</td><td>'+obj.adress+'</td><td><a href="'+obj.id+'">show</a><br><a href="'+obj.id+'/edit">edit</a></tr>');
-                        });
-                    }
-                    else
-                    {
-                        $('#t tbody#all').show();
-                        $('#t tbody#search').empty();
-                        $('#t tbody#search').fadeIn('fast');
-                    }
-                },
-            });
-            return false;
+
+
+
+
+
+    <!-- Insert this at the end of your body element, but before the closing tag -->
+    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+    <script>
+        $(function() {
+            $('#presidents4').initDataTables({{ datatable_settings(datatable4) }}, { searching: true,});
+
         });
-    });
-</script>
+
+
+
+
+    </script>
+
 
 {% endblock %}

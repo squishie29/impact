@@ -28,7 +28,7 @@ class GalleryController extends AbstractController
         $table = $dataTableFactory->create()
 
             ->add('imgpath', TextColumn::class, ['label' => 'image path', 'orderable'=> true,])
-            ->add('hotel_id', TextColumn::class, ['label' => 'Hotel', 'orderable'=> true, 'field' => 'hotel_id.name'])
+            ->add('hotel_id', TextColumn::class, ['label' => 'HOTEL', 'orderable'=> true, 'field' => 'hotel_id.name','searchable'=>true,])
             ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
                 return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
             }])
