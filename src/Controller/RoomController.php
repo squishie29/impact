@@ -112,8 +112,8 @@ class RoomController extends AbstractController
 
         $retour=json_encode($jsonContent,JSON_FORCE_OBJECT);
 
-        dd($retour);
-        echo json_last_error_msg();
+       // dd($retour);
+       // echo json_last_error_msg();
         return new Response($retour);
 
     }
