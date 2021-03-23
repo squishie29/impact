@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -58,6 +59,7 @@ class Room
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
      * @Groups("post:rooms")
+     * @MaxDepth(1)
      */
     private $idHotel;
 
@@ -73,8 +75,6 @@ class Room
      * @ORM\OneToMany(targetEntity=ReservationHotel::class, mappedBy="roomId", orphanRemoval=true)
      */
     private $reservationHotels;
-
-
 
     public function __toString()
     {
@@ -146,7 +146,8 @@ class Room
         return $this;
     }
 
-    public function getIdHotel(): ?Hotel
+
+    public function getIdHotel(): ?hotel
     {
         return $this->idHotel;
     }
@@ -157,6 +158,7 @@ class Room
 
         return $this;
     }
+
 
     /**
      * @return Collection|Options[]

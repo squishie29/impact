@@ -105,8 +105,15 @@ class RoomController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Room::class);
         $requestString=$request->get('searchValue');
         $Rooms= $repository->findRoomByDescription($requestString);
-        $jsonContent = $Normalizer->normalize($Rooms, 'json',['groups'=>'post:rooms']);
-        $retour=json_encode($jsonContent);
+
+
+
+        $jsonContent = $Normalizer->normalize($Rooms, 'html',['groups'=>'post:rooms']);
+
+        $retour=json_encode($jsonContent,JSON_FORCE_OBJECT);
+
+        dd($retour);
+        echo json_last_error_msg();
         return new Response($retour);
 
     }
