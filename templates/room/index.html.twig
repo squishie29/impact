@@ -4,14 +4,14 @@
 
 
 {% block body %}
-    <h4>Galleris</h4>
+    <h4>Rooms</h4>
     <!-- in the <head> section -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
     <!-- before the closing <body> tag -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
     <!-- Insert this where you want the table to appear -->
-    <div class="table table-bordered table-hover table-striped mb-4" id="presidents3">Loading...</div>
-    <a class="btn-outline-primary" href="{{ path('gallery_new') }}">ADD NEW</a>
+    <div class="table table-bordered table-hover table-striped mb-4" id="presidents5">Loading...</div>
+    <a class="btn-outline-primary" href="{{ path('room_new') }}">ADD NEW</a>
 
 
 
@@ -23,7 +23,7 @@
     <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
     <script>
         $(function() {
-            $('#presidents3').initDataTables({{ datatable_settings(datatable3) }}, { searching: true,});
+            $('#presidents5').initDataTables({{ datatable_settings(datatable5) }}, { searching: true,});
 
         });
 
