@@ -1,38 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gallery index{% endblock %}
+{% block title %}Options test{% endblock %}
+
 
 {% block body %}
-<h4 style="margin: 5px;">Gallery index</h4>
+    <h4>Options</h4>
+    <!-- in the <head> section -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+    <!-- before the closing <body> tag -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <!-- Insert this where you want the table to appear -->
+    <div class="table table-bordered table-hover table-striped mb-4" id="presidents3">Loading...</div>
+    <a class="btn-outline-primary" href="{{ path('gallery_new') }}">ADD NEW</a>
 
-    <table class="table table-bordered table-hover table-striped mb-4">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Imgpath</th>
-                <th>Hotel name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for gallery in galleries %}
-            <tr>
-                <td>{{ gallery.id }}</td>
-                <td>{{ gallery.imgpath }}</td>
-                <td>{{ gallery.hotel_id }}</td>
 
-                <td>
-                    <a href="{{ path('gallery_show', {'id': gallery.id}) }}">show</a>
-                    <a href="{{ path('gallery_edit', {'id': gallery.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a class="btn-outline-primary" href="{{ path('gallery_new') }}">Create new</a>
+
+
+
+
+    <!-- Insert this at the end of your body element, but before the closing tag -->
+    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+    <script>
+        $(function() {
+            $('#presidents3').initDataTables({{ datatable_settings(datatable3) }}, { searching: true,});
+
+        });
+
+
+
+
+    </script>
+
+
 {% endblock %}

@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\Gallery;
 use App\Form\GalleryType;
 use App\Repository\GalleryRepository;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\DateTimeColumn;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +23,28 @@ class GalleryController extends AbstractController
     /**
      * @Route("/", name="gallery_index", methods={"GET"})
      */
-    public function index(GalleryRepository $galleryRepository): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory,GalleryRepository $galleryRepository): Response
     {
+        $table = $dataTableFactory->create()
+
+            ->add('imgpath', TextColumn::class, ['label' => 'image path', 'orderable'=> true,])
+            ->add('hotel_id', TextColumn::class, ['label' => 'Hotel', 'orderable'=> true, 'field' => 'hotel_id.name'])
+            ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+            }])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => Gallery::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         return $this->render('gallery/index.html.twig', [
-            'galleries' => $galleryRepository->findAll(),
+            'datatable3' => $table,
+            'gallery' => $galleryRepository->findAll(),
+
         ]);
     }
 
