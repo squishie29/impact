@@ -119,5 +119,6 @@
     <orderEntry type="library" name="mapsjs-mapevents" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="datatables" level="application" />
+    <orderEntry type="library" name="mapquest" level="application" />
   </component>
 </module>
