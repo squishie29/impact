@@ -4,7 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Options;
 use App\Form\OptionsType;
+use App\Repository\GalleryRepository;
+use App\Repository\HotelRepository;
 use App\Repository\OptionsRepository;
+use App\Repository\ReservationHotelRepository;
+use App\Repository\RoomRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Options\PieChart\PieSlice;
 use Omines\DataTablesBundle\Adapter\ArrayAdapter;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\Column\TextColumn;
@@ -114,6 +121,42 @@ class OptionsController extends AbstractController
         return $this->redirectToRoute('options_index');
     }
 
+    /**
+     * @Route("/test", name="options_test", methods={"GET"})
+     */
+    public function indexAction(OptionsRepository $optionsRepository,HotelRepository $hotelRepository,ReservationHotelRepository $reservationHotelRepository,GalleryRepository $galleryRepository,RoomRepository $roomRepository)
+    {
+        $options = $optionsRepository->findAll();
+        $hotels = $hotelRepository->findAll();
+        $rooms = $roomRepository->findAll();
+        $galleris = $galleryRepository->findAll();
+        $reservations = $reservationHotelRepository->findAll();
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Gestion Hotel', 'Number per section'],
+                ['Number of options',     count($options)],
+                ['Number of hotels',     count($hotels)],
+                ['Number of rooms',     count($rooms)],
+                ['Number of galleris',     count($galleris)],
+                ['Number of reservations',     count($reservations)]
+
+            ]
+        );
+        $pieChart->getOptions()->setTitle('General infos');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+
+        return $this->render('options/test.html.twig', [
+            'pieChart' => $pieChart,
+
+        ]);
+    }
 
 
 }

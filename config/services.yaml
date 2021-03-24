@@ -6,6 +6,8 @@
 parameters:
     imagehotel_directory: '%kernel.project_dir%/public/front/pic/tours'
     imagegallery_directory: '%kernel.project_dir%/public/gallery'
+cmen_google_charts:
+    version: "current"
 datatables:
     language_from_cdn:    true
     method:               GET

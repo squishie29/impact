@@ -4,30 +4,18 @@
 
 
 {% block body %}
-    <!-- in the <head> section -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
-    <!-- before the closing <body> tag -->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
-    <!-- Insert this where you want the table to appear -->
-    <div class="table table-bordered table-hover table-striped mb-4" id="presidents">Loading...</div>
+    <!-- index.html.twig -->
+    <html>
+    <head></head>
+    <body>
+    <div id="div_chart"></div>
 
-
-
-
-
-
-    <!-- Insert this at the end of your body element, but before the closing tag -->
-    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
-    <script>
-        $(function() {
-            $('#presidents').initDataTables({{ datatable_settings(datatable) }}, { searching: true,});
-
-        });
-
-
-
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(pieChart, 'div_chart') }}
     </script>
+    </body>
+    </html>
 
 
 {% endblock %}
