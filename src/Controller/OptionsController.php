@@ -142,9 +142,9 @@ class OptionsController extends AbstractController
 
             ]
         );
-        $pieChart->getOptions()->setTitle('General infos');
+
         $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->setWidth(700);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
         $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
         $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
@@ -152,8 +152,56 @@ class OptionsController extends AbstractController
         $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
 
 
+        //char2
+
+        $star1 = $hotelRepository->findBy(
+        ['stars' => '1']);
+
+        $star2 = $hotelRepository->findBy(
+        ['stars' => '2']);
+
+        $star3 = $hotelRepository->findBy(
+        ['stars' => '3']);
+
+        $star4 = $hotelRepository->findBy(
+        ['stars' => '4']);
+
+        $star5 = $hotelRepository->findBy(
+        ['stars' => '5']);
+
+        $star6 = $hotelRepository->findBy(
+        ['stars' => '6']);
+
+        $star7 = $hotelRepository->findBy(
+        ['stars' => '7']);
+
+        $bar = new BarChart();
+        $bar->getData()->setArrayToDataTable(
+            [['', ''],
+                ['1 stars',     count($star1)],
+                ['2 stars',     count($star2)],
+                ['3 stars',     count($star3)],
+                ['4 stars',     count($star4)],
+                ['5 stars',     count($star5)],
+                ['6 stars',     count($star6)],
+                ['7 stars',     count($star7)]
+
+
+
+            ]
+        );
+
+        $bar->getOptions()->getHAxis()->setMinValue(0);
+        $bar->getOptions()->setWidth(400);
+        $bar->getOptions()->setHeight(500);
+
+
+
+
+
         return $this->render('options/test.html.twig', [
             'pieChart' => $pieChart,
+            'barchart' => $bar,
 
         ]);
     }

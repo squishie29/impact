@@ -66,7 +66,7 @@ class Options
     /**
      * @return Collection|Room[]
      */
-    /*
+    /**
     public function getRoomId(): Collection
     {
         return $this->roomId;

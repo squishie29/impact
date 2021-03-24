@@ -29,7 +29,6 @@ class HotelRepository extends ServiceEntityRepository
 
 
 
-
     // /**
     //  * @return Hotel[] Returns an array of Hotel objects
     //  */
