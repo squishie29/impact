@@ -105,7 +105,7 @@ class hotelDepartementController extends AbstractController
 
 
 
-        return $this->render('options/test.html.twig', [
+        return $this->render('hoteldepartement.html.twig', [
             'pieChart' => $pieChart,
             'barchart' => $bar,
 

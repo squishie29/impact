@@ -37,7 +37,7 @@ class HotelController extends AbstractController
             ->add('adress', TextColumn::class, ['label' => 'adress', 'orderable'=> true,'searchable'=>false,])
 
             ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
-                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a> ', $value,$value);
             }])
             ->createAdapter(ORMAdapter::class, [
                 'entity' => Hotel::class,

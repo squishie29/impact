@@ -122,5 +122,7 @@
     <orderEntry type="library" name="datatables" level="application" />
     <orderEntry type="library" name="mapquest" level="application" />
     <orderEntry type="library" name="loader" level="application" />
+    <orderEntry type="library" name="d3" level="application" />
+    <orderEntry type="library" name="api" level="application" />
   </component>
 </module>

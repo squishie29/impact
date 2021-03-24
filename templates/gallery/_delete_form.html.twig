@@ -1,5 +1,36 @@
-<form method="post" action="{{ path('gallery_delete', {'id': gallery.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gallery.id) }}">
-    <button class="btn">Delete</button>
-</form>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<div class="form_container">
+    <form  method="post" action="{{ path('gallery_delete', {'id': gallery.id}) }}" id="my_captcha_form">
+        <div class="g-recaptcha"
+             data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+        ></div>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gallery.id) }}">
+        <button class="btn-outline-primary" >Delete</button>
+    </form>
+</div>
+
+
+<script>
+
+
+    document.getElementById("my_captcha_form").addEventListener("submit",function(evt)
+    {
+
+        var response = grecaptcha.getResponse();
+        if(response.length == 0)
+        {
+            //reCaptcha not verified
+            alert("please verify you are humann!");
+            evt.preventDefault();
+            return false;
+        }
+        //captcha verified
+        //do the rest of your validations here
+
+    });
+</script>
+
