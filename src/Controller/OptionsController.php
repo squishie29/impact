@@ -121,9 +121,7 @@ class OptionsController extends AbstractController
         return $this->redirectToRoute('options_index');
     }
 
-    /**
-     * @Route("/test", name="options_test", methods={"GET"})
-     */
+
     public function indexAction(OptionsRepository $optionsRepository,HotelRepository $hotelRepository,ReservationHotelRepository $reservationHotelRepository,GalleryRepository $galleryRepository,RoomRepository $roomRepository)
     {
         $options = $optionsRepository->findAll();
