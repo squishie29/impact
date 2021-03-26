@@ -34,6 +34,43 @@ class FrontController extends AbstractController
     }
 
 
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function testing(Request $request): Response
+    {
+
+
+
+        \Stripe\Stripe::setApiKey('sk_test_51IZIMOALxTyarhINuN861AZlmvVUdPgnPDVKTmOrohYm22DWk87No2mjp41qgYz3nulYwnDQTIQUHo9u9XGAAF5b00exSWSpoJ');
+
+// Token is created using Stripe Checkout or Elements!
+// Get the payment token ID submitted by the form:
+
+        $amount = $request->request->get('_amount');
+
+        if ($amount!=null)
+        {
+            \Stripe\Charge::create([
+                'amount' => $amount*100,
+                'currency' => 'eur',
+                'description' => 'Example charge',
+                'source' => 'tok_mastercard',
+                'receipt_email' => 'gaismirami010@gmail.com',
+            ]);
+        }
+
+
+
+
+        return $this->render('front/test.html.twig', [
+
+        ]);
+    }
+
+
+
     /**
      * @Route("/hotels", name="hotels", methods={"GET"})
      */
