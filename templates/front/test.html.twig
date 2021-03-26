@@ -6,11 +6,11 @@
 {% block body %}
     <script src="https://js.stripe.com/v3/"></script>
 
-    <script>var stripe = Stripe('pk_test_51IZIMOALxTyarhINNwG4N93R74wClzUQIhYxZxud8XyTIEoxHVrVRg5gE8JbrFy19CBJuCHABqB71q40mv9RYG0z00xPVWnk26');
+    <script>var stripe = Stripe('pk_test_51IZPChCkl7MCjxmp1GMg226t9ZsjkB2NgHV5kpF6sJlYD694cHgweNMmj3TUwtPOzmzaxV9LIgutv6GQ6REtB6QD008gkMrvHb');
         var elements = stripe.elements();</script>
 
 
-    <form   action="https://formspree.io/f/xeqvjprb"  method="POST" id="payment-form">
+    <form  action="https://formspree.io/f/xeqvjprb"   method="POST" id="payment-form">
         <input type="hidden" name="_subject" value="New submission from x">
         <input type="text" id="amount" name="_amount" value="" >
         <label>

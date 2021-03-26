@@ -43,7 +43,7 @@ class FrontController extends AbstractController
 
 
 
-        \Stripe\Stripe::setApiKey('sk_test_51IZIMOALxTyarhINuN861AZlmvVUdPgnPDVKTmOrohYm22DWk87No2mjp41qgYz3nulYwnDQTIQUHo9u9XGAAF5b00exSWSpoJ');
+        \Stripe\Stripe::setApiKey('sk_test_51IZPChCkl7MCjxmp7YRVug2U3cXtCpqyhRBqJlWwJhHEewXPFsKzpyIUHEj4L2s7yPL6TmikcX99q1zi5fHFOGEY00JI5zuCKl');
 
 // Token is created using Stripe Checkout or Elements!
 // Get the payment token ID submitted by the form:
@@ -56,8 +56,7 @@ class FrontController extends AbstractController
                 'amount' => $amount*100,
                 'currency' => 'eur',
                 'description' => 'Example charge',
-                'source' => 'tok_mastercard',
-                'receipt_email' => 'gaismirami010@gmail.com',
+                'source' => 'tok_us',
             ]);
         }
 
