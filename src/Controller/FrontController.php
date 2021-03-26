@@ -33,6 +33,7 @@ class FrontController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/hotels", name="hotels", methods={"GET"})
      */
@@ -77,10 +78,11 @@ class FrontController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($reservationHotel);
             $entityManager->flush();
 
-            return $this->redirectToRoute('hotel_shows');
+            return $this->redirectToRoute('hotel_shows', array('id' => $reservationHotel->getRoomId()->getIdHotel()->getId()));
         }
 
         return $this->render('front/hotelsReservation.html.twig', [
@@ -89,61 +91,6 @@ class FrontController extends AbstractController
             'hotel' => $hotel,
 
         ]);
-    }
-    /**
-     * @Route("/reservationHotels/{id}", name="reservation_hotel_new2", methods={"GET","POST"},requirements={"id"="\d+"})
-     * @param HotelRepository $hotelRepository
-     * @param Hotel $hotel
-     * @param $id
-     * @return Response
-     */
-    public function test2(HotelRepository $hotelRepository, Hotel $hotel, $id)
-    {
-        $hotel=$hotelRepository->find(["id" => $id]);
-        $rooms=$hotel->getRooms();
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->getRepository(Utilisateur::class)->findOneByEmail("azeaze@email.com");
-        dump($user);
-        return $this->render('front/hotelsReservation.html.twig', [
-            'rooms' => $rooms,
-            'hotel' => $hotel,
-        ]);
-    }
-    /**
-     * @Route("/reservation_new", name="reservation_new", methods={"GET","POST"},requirements={"id"="\d+"})
-     * @param HotelRepository $hotelRepository
-     * @param Hotel $hotel
-     * @param $id
-     * @return Response
-     */
-
-    public function reservation_new(Request $request){
-        $em = $this->getDoctrine()->getManager();
-
-        $req  = $request->getContent();
-        $req = json_decode($req,true);
-
-        $debut = $req['debut'];
-        $fin = $req['fin'];
-        $usermail = $req['usermail'];
-        $room = $req['room'];
-
-//        $user=$em->getRepository("AppBundle:Utilisateur")->findOneByEmail($usermail);
-//        $room=$em->getRepository("AppBundle:Room")->findOneByType($usermail);
-
-        $user = $em->getRepository(Utilisateur::class)->findOneByEmail($usermail);
-        dump($user);
-
-        $reservationHotel = new ReservationHotel();
-        $reservationHotel->setDebut($debut);
-        $reservationHotel->setFin($fin);
-        $reservationHotel->setUserId($usermail);
-        $reservationHotel->setRoomId($room);
-        $em->persist($reservationHotel);
-        $em->flush();
-
-        return false;
     }
 
     public function searchAction(Request $request)

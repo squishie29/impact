@@ -4,24 +4,32 @@
     {{ form_row(form.debut)}}
     {{ form_row(form.fin)}}
     {{ form_row(form.userId)}}
-<div class="d-none">
-    {{ form_row(form.roomId) }}
+{{ dump(form.roomId.vars.choices) }}
+<label for="room"> Room </label>
+<select name="room" id="room">
+    {% for i in form.roomId.vars.choices %}
+
+        {% set x = i.value %}
+        {% set idHotel = form.roomId.vars.choices[x].data.idHotel.id %}
+
+        {% if idHotel == hotel.id %}
+            <option value="{{ x }}"> Room {{ form.roomId.vars.choices[x].label }} | Hotel {{ hotel.getName() }}</option>
+        {% endif %}
+
+    {% endfor %}
+
+</select>
+<div class="d-none" >
+    {{ form_widget(form.roomId) }}
 </div>
-    <label for="room"> Room </label>
-    <select name="room" id="room">
-        {% for i in form.roomId.vars.choices %}
-            
-            {% set x = i.value %}
-            {% set idHotel = form.roomId.vars.choices[x].data.idHotel.id %}
 
-            {% if idHotel == hotel.id %}
-                <option value=""> room id {{ x }} | hotel id {{ idHotel }}</option>
-            {% endif %}
-            
-        {% endfor %}
+<script>
+    function myFunction() {
 
-    </select>
-<br>
+        x = document.getElementById("room").value;
+        document.getElementById("reservation_hotel_roomId").value = x;
+    }
+</script>
 {#{{ dump(hotel) }}#}
 {#{% for i in form.roomId.vars.choices %}#}
 {#    {% set x = i.value %}#}
@@ -33,6 +41,6 @@
 
 
 
-<button class="btn">{{ button_label|default('Save') }}</button>
+<button  onclick="myFunction()" class="btn" >{{ button_label|default('Save') }}</button>
 
 {{ form_end(form) }}

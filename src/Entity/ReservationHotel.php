@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReservationHotelRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReservationHotelRepository::class)
@@ -36,6 +37,7 @@ class ReservationHotel
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThan(propertyPath="debut")
      */
     private $fin;
 
