@@ -6,20 +6,20 @@
 {% block body %}
     <script src="https://js.stripe.com/v3/"></script>
 
-    <script>var stripe = Stripe('pk_test_51IZPChCkl7MCjxmp1GMg226t9ZsjkB2NgHV5kpF6sJlYD694cHgweNMmj3TUwtPOzmzaxV9LIgutv6GQ6REtB6QD008gkMrvHb');
+    <script>var stripe = Stripe('pk_test_51IZIMOALxTyarhINNwG4N93R74wClzUQIhYxZxud8XyTIEoxHVrVRg5gE8JbrFy19CBJuCHABqB71q40mv9RYG0z00xPVWnk26');
         var elements = stripe.elements();</script>
 
 
-    <form  action="https://formspree.io/f/xeqvjprb"   method="POST" id="payment-form">
+    <form   method="POST" id="payment-form">
         <input type="hidden" name="_subject" value="New submission from x">
         <input type="text" id="amount" name="_amount" value="" >
         <label>
             Your email:
-            <input type="email" name="Sender Email">
+            <input type="email" name="Sender Email" id="email2">
         </label>
         <label>
             Your message:
-            <textarea name="message"></textarea>
+            <textarea name="message" id="message2"></textarea>
         </label>
 
         <div class="form-row">
@@ -35,10 +35,43 @@
             <div id="card-errors" role="alert"></div>
         </div>
 
-        <button>Submit Payment</button>
+        <button onclick="myFunction();">Submit Payment</button>
     </form>
 
+    aaaaaaaaaaaaaa
+    <form  action="https://formspree.io/f/xeqvjprb"  method="POST" id="form2">
 
+        <input type="hidden" name="_subject" value="New submission from x">
+        <input style="display: none;" type="text" id="amountF" name="amount" value="" >
+        <label>
+            <input style="display: none;" type="email" name="Sender Email" id="emailF">
+        </label>
+        <label>
+            <textarea style="display: none;" name="message" id="messageF"></textarea>
+        </label>
+
+
+        <button style="display: none;" type="submit">Submit Payment</button>
+
+        <script>
+            function myFunction() {
+
+                x = document.getElementById("amount").value;
+                b = document.getElementById("email2").value;
+                c = document.getElementById("message2").value;
+
+                document.getElementById("amountF").value = x;
+                document.getElementById("emailF").value = b;
+                document.getElementById("messageF").value = c;
+
+                setTimeout(function() {
+                    document.getElementById("form2").submit();
+                }, 1000);
+            }
+        </script>
+
+
+    </form>
 
     <script>
         // Custom styling can be passed to options when creating an Element.
