@@ -41,6 +41,11 @@ class ReservationHotel
      */
     private $fin;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $confirmation="non valide";
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +95,18 @@ class ReservationHotel
     public function setFin(\DateTimeInterface $fin): self
     {
         $this->fin = $fin;
+
+        return $this;
+    }
+
+    public function getConfirmation(): ?string
+    {
+        return $this->confirmation;
+    }
+
+    public function setConfirmation(string $confirmation): self
+    {
+        $this->confirmation = $confirmation;
 
         return $this;
     }

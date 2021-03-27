@@ -31,6 +31,7 @@ class ReservationHotelController extends AbstractController
             ->add('roomId', TextColumn::class, ['label' => 'roomId', 'orderable'=> true, 'field' => 'roomId.id'])
             ->add('debut', DateTimeColumn::class, ['label' => 'date debut','format' => 'd-m-Y'])
             ->add('fin', DateTimeColumn::class, ['label' => 'date fin','format' => 'd-m-Y'])
+            ->add('confirmation', TextColumn::class, ['label' => 'Confirmation', 'orderable'=> true])
             ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
                 return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
             }])
