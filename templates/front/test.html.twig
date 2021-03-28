@@ -4,6 +4,7 @@
 
 
 {% block body %}
+
     <script src="https://js.stripe.com/v3/"></script>
 
     <script>var stripe = Stripe('pk_test_51IZIMOALxTyarhINNwG4N93R74wClzUQIhYxZxud8XyTIEoxHVrVRg5gE8JbrFy19CBJuCHABqB71q40mv9RYG0z00xPVWnk26');
@@ -12,7 +13,7 @@
 
     <form action="{{ path('reservation_hotel_check', {'id': reservation_hotel.id}) }}"  method="POST" id="payment-form">
         <input type="hidden" name="_subject" value="New submission from x">
-        <input type="text" id="amount" name="_amount" value="" >
+        <input type="text" id="amount" name="_amount"  value="" >
         <label>
             Your email:
             <input type="email" name="Sender Email" id="email2">
