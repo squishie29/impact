@@ -1,6 +1,6 @@
 
 
-{% block title %}checkout test{% endblock %}
+{% block title %}Galleries test{% endblock %}
 
 
 {% block body %}
@@ -11,7 +11,7 @@
         var elements = stripe.elements();</script>
 
 
-    <form action="{{ path('reservation_hotel_check', {'id': reservation_hotel.id}) }}"  method="POST" id="payment-form">
+    <form   method="POST" id="payment-form">
         <input type="hidden" name="_subject" value="New submission from x">
         <input type="text" id="amount" name="_amount"  value="" >
         <label>
@@ -64,9 +64,9 @@
                 document.getElementById("emailF").value = b;
                 document.getElementById("messageF").value = c;
 
-               /* setTimeout(function() {
+                setTimeout(function() {
                     document.getElementById("form2").submit();
-                }, 1000);*/
+                }, 1000);
             }
         </script>
 
