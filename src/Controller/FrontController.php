@@ -70,13 +70,14 @@ class FrontController extends AbstractController
 // Get the payment token ID submitted by the form:
 
         $amount = $request->request->get('_amount');
+        $desc = $request->request->get('message');
 
         if ($amount!=null)
         {
             \Stripe\Charge::create([
                 'amount' => $amount*100,
                 'currency' => 'usd',
-                'description' => 'chaaaaaaarge',
+                'description' => $desc,
                 'source' => 'tok_us',
             ]);
         }
@@ -140,7 +141,7 @@ class FrontController extends AbstractController
             $entityManager->persist($reservationHotel);
             $entityManager->flush();
 
-            return $this->redirectToRoute('hotel_shows', array('id' => $reservationHotel->getRoomId()->getIdHotel()->getId()));
+            return $this->redirectToRoute('test', array('id' => $reservationHotel->getId()));
         }
 
         return $this->render('front/hotelsReservation.html.twig', [

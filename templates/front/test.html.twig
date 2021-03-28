@@ -4,6 +4,7 @@
 
 
 {% block body %}
+    {{ reservation_hotel.getUserId().getEmail()  }}
 
     <script src="https://js.stripe.com/v3/"></script>
 
@@ -16,11 +17,11 @@
         <input type="text" id="amount" name="_amount" value="{{ reservation_hotel.getRoomId().getPrix() }}" readonly>
         <label>
             Your email:
-            <input type="email" name="Sender Email" id="email2">
+            <input type="email" name="Sender Email" id="email2"value="{{ reservation_hotel.getUserId().getEmail()  }}"readonly>
         </label>
         <label>
             Your message:
-            <textarea name="message" id="message2"></textarea>
+            <textarea name="message" id="message2"readonly>Reservation de: {{ reservation_hotel.getRoomId().getType() }}</textarea>
         </label>
 
         <div class="form-row">
