@@ -45,41 +45,7 @@
         <button type="submit">ttt</button>
     </form>
 
-    <form  action="https://formspree.io/f/xeqvjprb"  method="POST" id="form2">
 
-        <input type="hidden" name="_subject" value="New submission from x">
-        <input style="display: none;" type="text" id="amountF" name="amount" value="" >
-        <label>
-            <input style="display: none;" type="email" name="Sender Email" id="emailF">
-        </label>
-        <label>
-            <textarea style="display: none;" name="message" id="messageF"></textarea>
-        </label>
-
-
-        <button style="display: none;" type="submit">Submit Payment</button>
-
-        <script>
-            function myFunction() {
-
-                x = document.getElementById("amount").value;
-                b = document.getElementById("email2").value;
-                c = document.getElementById("message2").value;
-
-                document.getElementById("amountF").value = x;
-                document.getElementById("emailF").value = b;
-                document.getElementById("messageF").value = c;
-
-
-             setTimeout(function() {
-                    document.getElementById("form4").submit();
-                }, 1000);
-
-            }
-        </script>
-
-
-    </form>
 
     <script>
         // Custom styling can be passed to options when creating an Element.

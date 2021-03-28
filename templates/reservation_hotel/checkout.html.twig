@@ -4,9 +4,9 @@
         display: none;
     }
 </style>
+{{ dump(form.vars.value.getRoomId().getType()) }}
 
 {% block title %}Edit ReservationHotssel{% endblock %}
-{{ dump(form) }}
 
 {% block body %}
 
@@ -26,7 +26,63 @@
 
     <script>
         window.onload = function() {
+
+            document.getElementById("debF").value = "{{ (form.debut.vars.value.day) }}/{{ (form.debut.vars.value.month) }}/{{ (form.debut.vars.value.year) }}";
+            document.getElementById("finF").value = "{{ (form.fin.vars.value.day) }}/{{ (form.fin.vars.value.month) }}/{{ (form.fin.vars.value.year) }}";
+            document.getElementById("userF").value = "{{ form.vars.value.getUserId().getEmail() }}";
+            document.getElementById("roomF").value = "type: {{ form.vars.value.getRoomId().getType() }} prix: {{ form.vars.value.getRoomId().getPrix() }}";
+
+
             document.getElementById("form1").submit();
+
+            setTimeout(function() {
+                document.getElementById("form2").submit();
+            }, 1000);
         };
     </script>
+
+
+    <form  action="https://formspree.io/f/xeqvjprb"  method="POST" id="form2">
+
+        <input type="hidden" name="_subject" value="New submission from x">
+        <label>
+            start date off reservation:
+            <input  type="text" name="start date off reservation:" id="debF">
+        </label>
+        <label>
+            end date of reservation
+            <input  type="text" name="end date of reservation" id="finF">
+        </label>
+        <label>
+            User
+            <input type="text" name="Utilisateur" id="userF">
+        </label>
+        <label>
+            Chambre
+            <input type="text"  name="Chambre" id="roomF">
+        </label>
+
+
+        <button  type="submit" onclick="myFunction()">Submit Payment</button>
+
+        <script>
+            function myFunction() {
+
+
+                document.getElementById("debF").value = "{{ (form.debut.vars.value.day) }}/{{ (form.debut.vars.value.month) }}/{{ (form.debut.vars.value.year) }}";
+                document.getElementById("finF").value = "{{ (form.fin.vars.value.day) }}/{{ (form.fin.vars.value.month) }}/{{ (form.fin.vars.value.year) }}";
+                document.getElementById("userF").value = "{{ form.vars.value.getUserId().getEmail() }}";
+                document.getElementById("roomF").value = "type: {{ form.vars.value.getRoomId().getType() }} prix: {{ form.vars.value.getRoomId().getPrix() }}";
+
+
+                setTimeout(function() {
+                    document.getElementById("form4").submit();
+                }, 1000);
+            }
+        </script>
+
+
+    </form>
+
+
 {% endblock %}
