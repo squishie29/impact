@@ -8,6 +8,7 @@ use App\Entity\Room;
 use App\Repository\RoomRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -40,6 +41,7 @@ class ReservationHotelType extends AbstractType
 //                        ;
 //                },
             ))
+            ->add('confirmation', HiddenType::class)
         ;
     }
 

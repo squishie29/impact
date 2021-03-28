@@ -1,0 +1,32 @@
+<style>
+    .hidden2
+    {
+        display: none;
+    }
+</style>
+
+{% block title %}Edit ReservationHotssel{% endblock %}
+{{ dump(form) }}
+
+{% block body %}
+
+    <h1 >RESERVATION CONFIRMER</h1>
+
+    {{ form_start(form, {'attr': {'id': 'form1'}}) }}
+    {{ form_widget(form.debut, { 'attr': {'class': 'hidden2'} })}}
+    {{ form_widget(form.fin, { 'attr': {'class': 'hidden2'} })}}
+    {{ form_widget(form.userId, { 'attr': {'class': 'hidden2'} })}}
+    {{ form_widget(form.roomId, { 'attr': {'class': 'hidden2'} })}}
+    {{ form_widget(form.confirmation, {'value' : 'valide'})}}
+
+    <button class="btn hidden2">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+
+    <script>
+        window.onload = function() {
+            document.getElementById("form1").submit();
+        };
+    </script>
+{% endblock %}

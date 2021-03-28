@@ -34,11 +34,32 @@ class FrontController extends AbstractController
     }
 
 
+    /**
+     * @Route("/{id}/check", name="reservation_hotel_check", methods={"GET","POST"})
+     */
+    public function checkout(Request $request, ReservationHotel $reservationHotel): Response
+    {
+        $form = $this->createForm(ReservationHotelType::class, $reservationHotel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('hotel_shows', array('id' => $reservationHotel->getRoomId()->getIdHotel()->getId()));
+        }
+
+        return $this->render('reservation_hotel/checkout.html.twig', [
+            'reservation_hotel' => $reservationHotel,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 
     /**
-     * @Route("/test", name="test")
+     * @Route("/{id}/test", name="test",methods={"GET","POST"})
      */
-    public function testing(Request $request): Response
+    public function testing(Request $request, ReservationHotel $reservationHotel): Response
     {
 
 
@@ -64,6 +85,7 @@ class FrontController extends AbstractController
 
 
         return $this->render('front/test.html.twig', [
+            'reservation_hotel' => $reservationHotel,
 
         ]);
     }
