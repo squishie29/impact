@@ -1,6 +1,6 @@
 
 
-{% block title %}Galleries test{% endblock %}
+{% block title %}checkout test{% endblock %}
 
 
 {% block body %}
@@ -10,7 +10,7 @@
         var elements = stripe.elements();</script>
 
 
-    <form   method="POST" id="payment-form">
+    <form action=""  method="POST" id="payment-form">
         <input type="hidden" name="_subject" value="New submission from x">
         <input type="text" id="amount" name="_amount" value="" >
         <label>
@@ -36,6 +36,10 @@
         </div>
 
         <button onclick="myFunction();">Submit Payment</button>
+    </form>
+    <form id="form4" action="{{ path('reservation_hotel_check', {'id': reservation_hotel.id}) }}">
+
+        <button type="submit">ttt</button>
     </form>
 
     <form  action="https://formspree.io/f/xeqvjprb"  method="POST" id="form2">
@@ -64,7 +68,7 @@
                 document.getElementById("messageF").value = c;
 
                 setTimeout(function() {
-                    document.getElementById("form2").submit();
+                    document.getElementById("form4").submit();
                 }, 1000);
             }
         </script>
