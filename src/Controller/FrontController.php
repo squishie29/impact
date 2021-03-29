@@ -80,9 +80,17 @@ class FrontController extends AbstractController
                 'description' => $desc,
                 'source' => 'tok_us',
             ]);
+
+            return $this->redirectToRoute('reservation_hotel_check', array('id' => $reservationHotel->getId()));
+
         }
 
-        return $this->redirectToRoute('reservation_hotel_check', array('id' => $reservationHotel->getId()));
+       // return $this->redirectToRoute('reservation_hotel_check', array('id' => $reservationHotel->getId()));
+
+        return $this->render('front/test.html.twig', [
+            'id' => $reservationHotel->getId(),
+            'reservation_hotel'=>$reservationHotel,
+        ]);
 
 
             /*

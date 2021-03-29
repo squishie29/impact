@@ -3,13 +3,18 @@
 {% block title %}New ReservationHotel{% endblock %}
 
 {% block body %}
-<div class="content-body" ">
-    <div class="container col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4" style="width: 100vw;">
+<div class="content-body h-100 row align-items-center center" style="height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;" >
+
+    <div class="col text-center center" style="width: 20vw;" >
+        <h4>BOOK A ROOM</h4>
         <div class="">
 
 
             <div class="" id="t">
-    <h1>Reserve your room in the hotel:</h1>
+
 
     {{ include('reservation_hotel/form2.html.twig') }}
 
