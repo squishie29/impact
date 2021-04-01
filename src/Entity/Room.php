@@ -34,7 +34,7 @@ class Room
     private $nb_personnes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      * @Groups("post:rooms")
      */
     private $description;

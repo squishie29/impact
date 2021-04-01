@@ -87,49 +87,7 @@
                         <h5>Choose your room</h5>
                     </div>
                     <div class="tours-container">
-                        <div class="tours-box">
-                            <div class="tours-search mb-20">
-                                <form method="post" class="form search divider-skew">
-                                    <div class="search-wrap">
-                                        <input type="text" placeholder="Destination" class="form-control search-field"><i class="flaticon-suntour-map search-icon"></i>
-                                    </div>
-                                </form>
-                                <div class="tours-calendar divider-skew">
-                                    <input placeholder="Depart date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                                </div>
-                                <div class="tours-calendar divider-skew">
-                                    <input placeholder="Return date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                                </div>
-                                <div class="selection-box divider-skew"><i class="flaticon-suntour-adult box-icon"></i>
-                                    <select>
-                                        <option>Adult</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="selection-box divider-skew"><i class="flaticon-suntour-children box-icon"></i>
-                                    <select>
-                                        <option>Child</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="selection-box"><i class="flaticon-suntour-bed box-icon"></i>
-                                    <select>
-                                        <option>Room</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="button-search">GO</div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="room-table">
@@ -187,7 +145,7 @@
 
                     </table>
                     <div style="display:flex;justify-content:space-around;margin-top: 10px;">
-                        <a href="{{ path('reservationNew', {'id': hotel.id}) }}" class="cws-button alt " style="width: 20vw;">Book now 1</a>
+                        <a href="{{ path('reservationNew', {'id': hotel.id}) }}" class="cws-button alt " style="width: 20vw;">Book now </a>
                     </div>
                 </div>
             </div>

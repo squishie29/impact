@@ -25,7 +25,7 @@ class Hotel
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex(
-     *     pattern="/^[a-zA-Z0-9]([a-zA-Z0-9_])+$/",
+     *     pattern="/^[a-zA-Z0-9 ]([a-zA-Z0-9_ ])+$/",
      *     message="name only alpha numerals"
      * )
      * @Groups("post:read")
@@ -49,7 +49,7 @@ class Hotel
     private $photo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      * @Groups("post:read")
      */
     private $description;

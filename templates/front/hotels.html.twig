@@ -21,7 +21,10 @@
                         <!-- Recomended Content-->
                         <div class="recom-item-body"><a href="{{ path('hotel_shows', {'id': hotel.id}) }}">
                                 <h6 class="blog-title">{{ hotel.name }}</h6></a>
-                            <div class="stars stars-4"></div>
+
+                            {% for i in 1..hotel.stars %}
+                                <div class="stars stars"></div>
+                            {% endfor %}
 
 
 

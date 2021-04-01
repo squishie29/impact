@@ -1,6 +1,6 @@
+{% extends 'front.html.twig' %}
 
-
-{% block title %}checkout test{% endblock %}
+{% block title %}checkout {% endblock %}
 
 
 {% block body %}
@@ -13,7 +13,7 @@
         }
 
         form {
-            width: 300px;
+            width: 40vw;
             margin: 20px auto;
         }
 
@@ -130,7 +130,7 @@
         <div class="testt2">
         <label>
             Room reserved:
-            <textarea name="message"  id="message2"readonly>Reservation de: {{ reservation_hotel.getRoomId().getType() }}</textarea>
+            <textarea name="message"  id="message2"readonly>ROOM: {{ reservation_hotel.getRoomId().getType() }} BOOKED BY:  {{ reservation_hotel.getUserId().getEmail()  }}</textarea>
         </label>
         </div>
 
@@ -149,6 +149,10 @@
 
         <button onsubmit="myFunction();">Submit Payment</button>
     </form>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
 
