@@ -51,7 +51,7 @@
             document.getElementById("debF").value = "{{ (form.debut.vars.value.day) }}/{{ (form.debut.vars.value.month) }}/{{ (form.debut.vars.value.year) }}";
             document.getElementById("finF").value = "{{ (form.fin.vars.value.day) }}/{{ (form.fin.vars.value.month) }}/{{ (form.fin.vars.value.year) }}";
             document.getElementById("userF").value = "{{ form.vars.value.getUserId().getEmail() }}";
-            document.getElementById("roomF").value = "type: {{ form.vars.value.getRoomId().getType() }} prix: {{ form.vars.value.getRoomId().getPrix() }}";
+            document.getElementById("roomF").value = "type: {{ form.vars.value.getRoomId().getType() }} prix: {{ form.vars.value.getRoomId().getPrix() }} TND";
 
 
             document.getElementById("form1").submit();
