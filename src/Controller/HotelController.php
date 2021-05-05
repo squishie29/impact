@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Hotel;
 use App\Form\HotelType;
 use App\Repository\HotelRepository;
+use Doctrine\ORM\EntityManager;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\DataTableFactory;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/hotel")
@@ -173,19 +175,8 @@ class HotelController extends AbstractController
         return $this->redirectToRoute('hotel_index');
     }
 
-    /**
-     * @Route("/searchHotelx ", name="searchHotelx")
-     */
-    public function searchHotelx(Request $request,NormalizerInterface $Normalizer)
-    {
-        $repository = $this->getDoctrine()->getRepository(Hotel::class);
-        $requestString=$request->get('searchValue');
-        $hotels= $repository->findHotelByName($requestString);
-        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'post:read']);
-        $retour=json_encode($jsonContent);
-        return new Response($retour);
 
-    }
+
 
 
 

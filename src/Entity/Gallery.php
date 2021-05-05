@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\GalleryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GalleryRepository::class)
@@ -14,11 +15,13 @@ class Gallery
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("galleries")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("galleries")
      */
     private $imgpath;
 

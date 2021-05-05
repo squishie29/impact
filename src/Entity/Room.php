@@ -19,7 +19,8 @@ class Room
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:rooms")
+     * @Groups("rooms")
+     * @MaxDepth(2)
      */
     private $id;
 
@@ -29,19 +30,19 @@ class Room
      *     pattern="/^[1-4]+$/",
      *     message="maximum number of people in the room between 1 and 4"
      * )
-     * @Groups("post:rooms")
+     * @Groups("rooms")
      */
     private $nb_personnes;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("post:rooms")
+     * @Groups("rooms")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:rooms")
+     * @Groups("rooms")
      */
     private $type;
 
@@ -51,21 +52,19 @@ class Room
      *     value=0,
      *     message="price must be positive"
      * )
-     * @Groups("post:rooms")
+     * @Groups("rooms")
      */
     private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("post:rooms")
-     * @MaxDepth(1)
      */
     private $idHotel;
 
     /**
      * @ORM\OneToMany(targetEntity=Options::class, mappedBy="room_id", orphanRemoval=true)
-     * @Groups("post:rooms")
+     *
      */
     public $options;
 

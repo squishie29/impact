@@ -185,17 +185,34 @@ class FrontController extends AbstractController
         return $realEntities;
     }
 
+
+
     /**
-     * @Route("/searchHotelx ", name="searchHotelx")
+     * @Route("/listeHotels ", name="listeHotels")
      */
     public function searchHotelx(Request $request,NormalizerInterface $Normalizer)
     {
         $repository = $this->getDoctrine()->getRepository(Hotel::class);
         $requestString=$request->get('searchValue');
         $hotels= $repository->findHotelByName($requestString);
-        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'post:read']);
+        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'hotels']);
         $retour=json_encode($jsonContent);
         return new Response($retour);
 
     }
+
+
+
+
+/*
+    public function searchHotelx(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $requestString=$request->get('searchValue');
+        $hotels= $repository->findHotelByName($requestString);
+        $jsonContent = $Normalizer->normalize($hotels, 'json',['groups'=>'hotelzzs']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }*/
 }
