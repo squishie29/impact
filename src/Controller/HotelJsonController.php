@@ -97,7 +97,7 @@ class HotelJsonController extends  AbstractController
 
     /******************Modifier hotel*****************************************/
     /**
-     * @Route("/updateHotelJson/{id}", name="update_hotelJson", methods={"GET","POST"})
+     * @Route("/updateHotelJson", name="update_hotelJson", methods={"GET","POST"})
      */
     public function modifierHotelJson(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -115,8 +115,14 @@ class HotelJsonController extends  AbstractController
         $hotel->setStars($request->get("stars"));
         $hotel->setPhoto($request->get("photo"));
         $hotel->setDescription($request->get("description"));
-        $hotel->addRoom($request->get("rooms"));
-        $hotel->addGallery($request->get("galleries"));
+
+
+
+       // $roomx = $em->getRepository(Room::class)->find($rooms);
+       // $galleriesx = $em->getRepository(Gallery::class)->find(1);
+
+       // $hotel->addRoom($roomx);
+       // $hotel->addGallery($galleriesx);
 
 
 
