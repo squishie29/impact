@@ -4,7 +4,9 @@
 namespace App\Controller;
 
 use App\Entity\Gallery;
+use App\Entity\ReservationHotel;
 use App\Entity\Room;
+use App\Entity\Utilisateur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,44 +28,45 @@ class HotelJsonController extends  AbstractController
     /******************Ajouter Hotel*****************************************/
     /**
      * @Route("/addHotelJson", name="add_HotelJson")
-     * @Method("POST")
      */
 
     public function ajouterHotelJson(Request $request,NormalizerInterface $Normalizer)
     {
-        $hotel = new Hotel();
-        $name = $request->query->get("name");
-        $stars = $request->query->get("stars");
-        $photo = $request->query->get("photo");
-        $description = $request->query->get("description");
-        $adress = $request->query->get("adress");
-        $rooms = $request->query->get("rooms");
-        $galleries = $request->query->get("galleries");
+        $hotel = new ReservationHotel();
+        $userId = $request->query->get("user");
+        $roomId = $request->query->get("room");
+        $debut = $request->query->get("debut");
+        $fin = $request->query->get("fin");
+        $confirmation = $request->query->get("confirmation");
+
 
         $em = $this->getDoctrine()->getManager();
+        $debutx = new \DateTime($debut);
+        $finx = new \DateTime($fin);
+        //dd($debut);
+        //$finx=date( "Y-m-d", strtotime( $fin ) );
 
-        $hotel->setName($name);
-        $hotel->setStars($stars);
-        $hotel->setPhoto($photo);
-        $hotel->setDescription($description);
-        $hotel->setAdress($adress);
+        $hotel->setDebut($debutx);
+        $hotel->setFin($finx);
+        $hotel->setConfirmation($confirmation);
 
 
-        $roomx = $em->getRepository(Room::class)->find($rooms);
-        $galleriesx = $em->getRepository(Gallery::class)->find(1);
+        $userx = $em->getRepository(Utilisateur::class)->find($userId);
+        $roomx = $em->getRepository(Room::class)->find($roomId);
+
 
         //dd($galleriesx) ;
-        $hotel->addRoom($roomx);
+        $hotel->setRoomId($roomx);
 
 
-        $hotel->addGallery($galleriesx);
+        $hotel->setUserId($userx);
 
 
         //$em->clear($hotel);
         $em->persist($hotel);
         $em->flush();
         //$serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['hotels','rooms','galleries'],"preserve_empty_objects" => true]);
+        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['reservationH','rooms','user'],"preserve_empty_objects" => true]);
 
         //$formatted = $serializer->normalize($hotel);
         return new JsonResponse($formatted);
@@ -80,17 +83,17 @@ class HotelJsonController extends  AbstractController
         $id = $request->get("id");
 
         $em = $this->getDoctrine()->getManager();
-        $hotel = $em->getRepository(Hotel::class)->find($id);
+        $hotel = $em->getRepository(ReservationHotel::class)->find($id);
         if($hotel!=null ) {
             $em->remove($hotel);
             $em->flush();
 
             $serialize = new Serializer([new ObjectNormalizer()]);
-            $formatted = $serialize->normalize("Hotel deleted bro");
+            $formatted = $serialize->normalize("Reservation Hotel deleted bro");
             return new JsonResponse($formatted);
 
         }
-        return new JsonResponse("id hotel invalide.");
+        return new JsonResponse("id reservation hotel invalide.");
 
 
     }
@@ -107,14 +110,21 @@ class HotelJsonController extends  AbstractController
 
         //$hotel->setDescription($request->get("description"));
         $id = $request->get("id");
-        $hotel = $em->getRepository(Hotel::class)->find($id);
+        $hotel = $em->getRepository(ReservationHotel::class)->find($id);
         //dd($hotel->getName());
 
+        $debut = $request->get("debut");
+        $fin = $request->get("fin");
+        $debutx = new \DateTime($debut);
+        $finx = new \DateTime($fin);
+        //dd($request->get("id"));
 
-        $hotel->setName($request->get("name"));
-        $hotel->setStars($request->get("stars"));
-        $hotel->setPhoto($request->get("photo"));
-        $hotel->setDescription($request->get("description"));
+
+        $hotel->setDebut($debutx);
+        $hotel->setFin($finx);
+        $hotel->setConfirmation($request->get("confirmation"));
+
+
 
 
 
@@ -131,7 +141,7 @@ class HotelJsonController extends  AbstractController
        // $serializer = new Serializer([new ObjectNormalizer()]);
        // $formatted = $serializer->normalize($hotel);
         //$formatted = $Normalizer->normalize($hotel, 'json',['groups'=>'hotels']);
-        return new JsonResponse("Hotel updated");
+        return new JsonResponse("Reservation Hotel updated");
 
     }
 
@@ -155,10 +165,10 @@ class HotelJsonController extends  AbstractController
 
 
 
-        $hotel = $this->getDoctrine()->getManager()->getRepository(Hotel::class)->findAll();
+        $hotel = $this->getDoctrine()->getManager()->getRepository(ReservationHotel::class)->findAll();
        // $serializer = new Serializer([new ObjectNormalizer()]);
 
-        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['hotels','rooms','galleries'],"preserve_empty_objects" => true]);
+        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['reservationH','rooms','user'],"preserve_empty_objects" => true]);
 
         return new JsonResponse($formatted);
 
@@ -177,9 +187,9 @@ class HotelJsonController extends  AbstractController
     {
         $id = $request->get("id");
 
-        $hotel = $this->getDoctrine()->getManager()->getRepository(Hotel::class)->find($id);
+        $hotel = $this->getDoctrine()->getManager()->getRepository(ReservationHotel::class)->find($id);
 
-        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>'hotels']);
+        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['reservationH','rooms','user'],"preserve_empty_objects" => true]);
         return new JsonResponse($formatted);
     }
 
