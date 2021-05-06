@@ -3,7 +3,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Gallery;
 use App\Entity\Room;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Hotel;
@@ -27,13 +29,14 @@ class HotelJsonController extends  AbstractController
      * @Method("POST")
      */
 
-    public function ajouterHotelJson(Request $request)
+    public function ajouterHotelJson(Request $request,NormalizerInterface $Normalizer)
     {
         $hotel = new Hotel();
         $name = $request->query->get("name");
         $stars = $request->query->get("stars");
         $photo = $request->query->get("photo");
         $description = $request->query->get("description");
+        $adress = $request->query->get("adress");
         $rooms = $request->query->get("rooms");
         $galleries = $request->query->get("galleries");
 
@@ -43,13 +46,26 @@ class HotelJsonController extends  AbstractController
         $hotel->setStars($stars);
         $hotel->setPhoto($photo);
         $hotel->setDescription($description);
-        $hotel->addRoom($rooms);
-        $hotel->addGallery($galleries);
+        $hotel->setAdress($adress);
 
+
+        $roomx = $em->getRepository(Room::class)->find($rooms);
+        $galleriesx = $em->getRepository(Gallery::class)->find(1);
+
+        //dd($galleriesx) ;
+        $hotel->addRoom($roomx);
+
+
+        $hotel->addGallery($galleriesx);
+
+
+        //$em->clear($hotel);
         $em->persist($hotel);
         $em->flush();
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($hotel);
+        //$serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $Normalizer->normalize($hotel, 'json',['groups'=>['hotels','rooms','galleries'],"preserve_empty_objects" => true]);
+
+        //$formatted = $serializer->normalize($hotel);
         return new JsonResponse($formatted);
 
     }
@@ -58,7 +74,6 @@ class HotelJsonController extends  AbstractController
 
     /**
      * @Route("/deleteHotelJson", name="delete_HotelJson")
-     * @Method("DELETE")
      */
 
     public function deleteHotelJson(Request $request) {
@@ -131,9 +146,7 @@ class HotelJsonController extends  AbstractController
      */
     public function allHotelsJson(NormalizerInterface $Normalizer)
     {
-        $em = $this->getDoctrine()->getManager();
-        $room = $em->getRepository(Room::class)->find(2);
-        $roomJ = $Normalizer->normalize($room, 'json',['groups'=>'post:rooms',"preserve_empty_objects" => true]);
+
 
 
         $hotel = $this->getDoctrine()->getManager()->getRepository(Hotel::class)->findAll();

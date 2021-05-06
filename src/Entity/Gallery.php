@@ -33,7 +33,7 @@ class Gallery
 
     public function __toString()
     {
-        return $this->imgpath;
+        return (string)$this->imgpath;
     }
 
 

@@ -77,7 +77,7 @@ class Room
 
     public function __toString()
     {
-        return $this->getId2();
+        return (string)$this->getId();
     }
 
     public function __construct()
